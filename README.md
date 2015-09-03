@@ -1,7 +1,7 @@
-#Bloc-chat
-######(with React/Flux)
+#Bloc-chat######(with React/Flux)
 
 ##Design
+
 
 
 ##Structure
