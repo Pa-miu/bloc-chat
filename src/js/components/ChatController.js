@@ -3,8 +3,8 @@ var React = require('React');
 var ChatController = React.createClass({
     render : function() {
         return (
-            <ChatController
-            />
+            <div>
+            </div>
         );
     }
 });
