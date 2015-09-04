@@ -1,55 +1,76 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var react = require('gulp-react');
-var htmlreplace = require('gulp-html-replace');
-var livereload = require('gulp-livereload');
+var gulp = require('gulp'),
+    uglify = require('gulp-uglify'),
+    htmlreplace = require('gulp-html-replace'),
+    source = require('vinyl-source-stream'),
+    browserify = require('browserify'),
+    watchify = require('watchify'),
+    reactify = require('reactify'),
+    streamify = require('gulp-streamify'),
+    livereload = require('gulp-livereload');
 
 var path = {
-  HTML: 'src/index.html',
-  ALL: ['src/*.js', 'src/**/*.js', 'src/index.html'],
-  JS: ['src/*.js', 'src/**/*.js'],
-  MINIFIED_OUT: 'build.min.js',
-  DEST_SRC: 'dist/src',
-  DEST_BUILD: 'dist/build',
-  DEST: 'dist'
+    HTML: 'index.html',
+    OUT: 'build.js',
+    MINIFIED_OUT: 'build.min.js',
+    APPEND_JS: 'js/',
+    DEST_PROD: 'prod/',
+    DEST_DEV: 'dev/',
+    ENTRY_POINT: 'src/js/App.js'
 };
 
 /* Development Tasks */
-gulp.task('transform', function() {
-    gulp.src(path.JS)
-        .pipe(react())
-        .pipe(gulp.dest(path.DEST_SRC))
-});
-
-gulp.task('copy', function() {
+gulp.task('copybundle', function() {
     gulp.src(path.HTML)
-        .pipe(gulp.dest(path.DEST_SRC))
+        .pipe(htmlreplace({
+            'js': path.APPEND_JS + path.OUT
+        }))
+        .pipe(gulp.dest(path.DEST_DEV))
         .pipe(livereload());
 });
 
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch(path.ALL, ['transform', 'copy']);
+    gulp.watch(path.HTML, ['copybundle']);
+    
+    var watcher = watchify(browserify({
+        entries: [path.ENTRY_POINT],
+        transform: [reactify],
+        debug: true,
+        cache: {}, packageCache: {}, fullpaths: true
+    }));
+    
+    return watcher.on('update', function() {
+        watcher.bundle()
+            .pipe(source(path.OUT))
+            .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS))
+            .pipe(livereload())
+            console.log('Updated');
+    })
+        .bundle()
+        .pipe(source(path.OUT))
+        .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS));
 });
 
 /* Production Tasks */
 gulp.task('build', function() {
-    gulp.src(path.JS)
-        .pipe(react())
-        .pipe(concat(path.MINIFIED_OUT))
-        .pipe(uglify(path.MINIFIED_OUT))
-        .pipe(gulp.dest(path.DEST_BUILD));
+    browserify({
+        entries: [path.ENTRY_POINT],
+        transform: [reactify]
+    })
+        .bundle()
+        .pipe(source(path.MINIFIED_OUT))
+        .pipe(streamify(uglify({file:path.MINIFIED_OUT})))
+        .pipe(gulp.dest(path.DEST_PROD + path.APPEND_JS))
 });
 
 gulp.task('replaceHTML', function() {
     gulp.src(path.HTML)
         .pipe(htmlreplace({
-            'js': 'build/' + path.MINIFIED_OUT
+            'js': path.APPEND_JS + path.MINIFIED_OUT
         }))
-        .pipe(gulp.dest(path.DEST));
+        .pipe(gulp.dest(path.DEST_PROD));
 });
 
-/* Grouped Tasks */
-gulp.task('default', ['watch']);
+/* Composited Tasks */
+gulp.task('default', ['copybundle', 'watch']);
 gulp.task('production', ['replaceHTML', 'build']);
