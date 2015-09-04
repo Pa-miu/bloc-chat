@@ -2,7 +2,7 @@
 >A chat app for [Bloc](https://www.bloc.io) made with React/Flux
 
 ##Design
-###User Stories
+###Features
     1. I want to change my username
         a. Usernames should be unique
         b. I want to be given a default username on entry
