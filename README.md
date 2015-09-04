@@ -1,5 +1,5 @@
-#Bloc-chat
->with React/Flux
+#Bloc-Chat
+>A chat app for [Bloc](https://www.bloc.io) made with React/Flux
 
 ##Design
 ##Structure
@@ -11,11 +11,14 @@
 
 ##Gulp Tasks
 #####gulp
-Bundles `src/` files into `dev/` as `src/bundle.js`.
-Copies `index.html` into `dev/` and replaces script sources with `bundle.js`.
+Builds `src/js` files into `dev/js` as `bundle.js`.
+
+Copies `index.html` into `dev` and replaces script sources with `bundle.js`.
+
 Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
 
 #####gulp production
-Bundles and Uglifies `src/` files into `prod/` as `bundle.min.js`.
-Copies `index.html` into `dev/` and replaces script sources with `bundle.min.js`.
+Builds and Uglifies `src/js` files into `prod/js` as `bundle.min.js`.
+
+Copies `index.html` into `prod` and replaces script sources with `bundle.min.js`.
 
