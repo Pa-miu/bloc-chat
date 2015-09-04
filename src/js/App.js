@@ -1,3 +1,3 @@
-var Parent = require('./Parent');
+var ChatController = require('./components/ChatController');
 
-React.render(<Parent />, document.getElementById('app'));
+React.render(<ChatController />, document.getElementById('app'));
