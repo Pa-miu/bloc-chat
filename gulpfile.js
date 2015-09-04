@@ -9,28 +9,45 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 var path = {
-    HTML: 'index.html',
-    OUT: 'build.js',
+    HTML: 'src/index.html',
+    STYLES: 'src/styles/**/*.css',
+    DEV_OUT: 'build.js',
     MINIFIED_OUT: 'build.min.js',
     APPEND_JS: 'js/',
+    APPEND_STYLES: 'styles/',
     DEST_PROD: 'prod/',
     DEST_DEV: 'dev/',
     ENTRY_POINT: 'src/js/app.js'
 };
 
-/* Development Tasks */
-gulp.task('copybundle', function() {
+/* 
+    Development Tasks 
+ */
+gulp.task('refresh', function() {
+    livereload.listen();
+});
+
+gulp.task('copyHTML', function() {
     gulp.src(path.HTML)
         .pipe(htmlreplace({
-            'js': path.APPEND_JS + path.OUT
+            'js': path.APPEND_JS + path.DEV_OUT
         }))
         .pipe(gulp.dest(path.DEST_DEV))
         .pipe(livereload());
 });
 
+/*
+    Temporary until I decide to bundle styles together
+ */
+gulp.task('copyCSS', function() {
+    gulp.src(path.STYLES)
+        .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
+        .pipe(livereload());
+});
+
 gulp.task('watch', function() {
-    livereload.listen();
-    gulp.watch(path.HTML, ['copybundle']);
+    gulp.watch(path.HTML, ['copyHTML']);
+    gulp.watch(path.STYLES, ['copyCSS']);
     
     var watcher = watchify(browserify({
         entries: [path.ENTRY_POINT],
@@ -41,17 +58,19 @@ gulp.task('watch', function() {
     
     return watcher.on('update', function() {
         watcher.bundle()
-            .pipe(source(path.OUT))
+            .pipe(source(path.DEV_OUT))
             .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS))
             .pipe(livereload())
             console.log('Updated');
     })
         .bundle()
-        .pipe(source(path.OUT))
+        .pipe(source(path.DEV_OUT))
         .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS));
 });
 
-/* Production Tasks */
+/* 
+    Production Tasks 
+ */
 gulp.task('build', function() {
     browserify({
         entries: [path.ENTRY_POINT],
@@ -63,7 +82,7 @@ gulp.task('build', function() {
         .pipe(gulp.dest(path.DEST_PROD + path.APPEND_JS))
 });
 
-gulp.task('replaceHTML', function() {
+gulp.task('buildHTML', function() {
     gulp.src(path.HTML)
         .pipe(htmlreplace({
             'js': path.APPEND_JS + path.MINIFIED_OUT
@@ -72,5 +91,5 @@ gulp.task('replaceHTML', function() {
 });
 
 /* Composited Tasks */
-gulp.task('default', ['copybundle', 'watch']);
-gulp.task('production', ['replaceHTML', 'build']);
+gulp.task('default', ['refresh', 'copyHTML', 'copyCSS', 'watch' ]);
+gulp.task('production', ['buildHTML', 'build']);

@@ -1,5 +1,3 @@
-var React = require('react');
-
 var ChatController = React.createClass({
     render : function() {
         return (
