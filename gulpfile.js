@@ -15,7 +15,7 @@ var path = {
     APPEND_JS: 'js/',
     DEST_PROD: 'prod/',
     DEST_DEV: 'dev/',
-    ENTRY_POINT: 'src/js/App.js'
+    ENTRY_POINT: 'src/js/app.js'
 };
 
 /* Development Tasks */
