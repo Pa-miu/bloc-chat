@@ -1,0 +1,11 @@
+.message-form {
+    padding: 1rem;
+}
+
+.message-form .message-input{
+    overflow: hidden;
+    padding: 0.5rem;
+    height: 2rem;   /* Add 1rem for every new line during height expansion */
+    width: 100%;
+    resize: none;
+}

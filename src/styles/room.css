@@ -1,14 +1,9 @@
 .room-box {
-    float: left;
+    display: table-cell;
+    vertical-align: top;
     width: 15rem;
-    color: rgb(211, 202, 202);
-    background-color: rgb(60, 82, 88);
-}
-
-.room-box.full-height {
-    overflow: hidden;
-    padding-bottom: 20000px;
-    margin-bottom: -20000px;
+    color: rgb(234, 234, 234);
+    background-color: rgb(69, 143, 163);
 }
 
 .room-box .room-hover:hover{
@@ -22,24 +17,23 @@
     width: 100%;
 }
 
-    .room-box .room-box-title{
-        display: table-cell;
-        width: 75%;
-        font-size: 1.3rem;
-        font-weight: 300;
-        text-transform: uppercase;
-    }
+.room-box .room-box-header .room-box-title{
+    display: table-cell;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
 
-    .room-box .create-room-button{
-        display: table-cell;
-        font-size: 1.4rem;
-        width: 25%;
-    }
+.room-box .create-room-button{
+    display: table-cell;
+    font-size: 1.25rem;
+}
 
 .room-box .room-node{
     padding: 0.3rem 1.5rem;
 }
 
-    .room-box .room-node:hover{
-        background-color: rgb(100, 173, 91);
-    }
+.room-box .room-node:hover{
+    background-color: rgb(100, 173, 91);
+}
