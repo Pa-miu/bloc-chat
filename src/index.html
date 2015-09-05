@@ -6,17 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- External stylesheets -->
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         
         <!-- Local stylesheets -->
         <link rel="stylesheet" type="text/css" href="styles/main.css">
-        
+        <link rel="stylesheet" type="text/css" href="styles/room.css">
+        <link rel="stylesheet" type="text/css" href="styles/message.css">
         <!-- External libraries -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     </head>
     <body>
+        <div class="room-box full-height">
+            <div class="room-box-header">
+                <div class="room-box-title">
+                    Open Rooms
+                </div>
+                <span class="ion-plus-circled create-room-button room-hover"></span>
+            </div>
+            <div class="room-node room-hover">Room 1</div>
+            <div class="room-node room-hover">Room 2</div>
+            <div class="room-node room-hover">Room 3</div>
+        </div>
+        <div class="message-box">
+            Message box.
+        </div>
         <div id="app"></div>
-        Some text.
         <!-- build:js -->
         <!-- endbuild -->
     </body>
