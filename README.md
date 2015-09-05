@@ -14,7 +14,6 @@
         a. List
             * Splash page to introduce interface on new session
             * Join any room by clicking on it
-            * Rooms indicate new messages
         b. Create
             * Create a new room on the server with a modal form
             * Room creator assumes ownership of the room
@@ -46,15 +45,15 @@
             * Rooms remember subscribed users and will not "empty" unless all users unsubscribe
         b. Members
             * Display active users and whether they're an Owner, a Registered User, or a Temporary User
-        b. Create
+        c. Create
             * Ownership persists for registered users
             * Ownership passes along subscribed users first
-        c. Delete
+        d. Delete
             * Inactive rooms will self-delete
             * Owners can delete their own room
-        d. Log
+        e. Log
             * Generate plaintext of room's history
-        e. Scramble
+        f. Scramble
             * Owners can force all active registered users to assume unique, randomly generated display names
     3. Message 
         a. Edit
