@@ -11,8 +11,9 @@
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         <link rel="stylesheet" type="text/css" href="styles/room.css">
         <link rel="stylesheet" type="text/css" href="styles/message.css">
-        <link rel="stylesheet" type="text/css" href="styles/divider.css">
+        <link rel="stylesheet" type="text/css" href="styles/message-instance.css">
         <link rel="stylesheet" type="text/css" href="styles/message-form.css">
+        <link rel="stylesheet" type="text/css" href="styles/divider.css">
         <!-- External libraries -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
@@ -35,40 +36,44 @@
                     Room 1
                 </div> 
             </div>
-                
-            <div class="message-list">
-                <div class="message-instance">
-                    <div class="message-sender">Ipsum</div>
-                    <div class="message-timestamp">00:00</div>
-                    <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                </div>
-                <div class="message-instance">
-                    <div class="message-sender">Ipsum</div>
-                    <div class="message-timestamp">00:00</div>
-                    <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                </div>
-                <div class="message-instance">
-                    <div class="message-sender">Ipsum</div>
-                    <div class="message-timestamp">00:00</div>
-                    <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                </div>
-                
-                <div class="message-instance">
-                    <div class="message-sender">kusera</div>
-                    <div class="message-timestamp">14:15</div>
-                    <div class="message-content">Hello World!</div>
-                </div>
-                
-                <div class="date-divider">
-                    <hr class="divider-line"></hr>
-                    <div class="divider-label">Today</div>
+            
+            <div class="message-list-wrapper">
+                <div class="message-list">
+                    <div class="message-instance">
+                        <div class="message-sender">Ipsum</div>
+                        <div class="message-timestamp">00:00</div>
+                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
+                    </div>
+                    <div class="message-instance">
+                        <div class="message-sender">Ipsum</div>
+                        <div class="message-timestamp">00:00</div>
+                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
+                    </div>
+                    <div class="message-instance">
+                        <div class="message-sender">Ipsum</div>
+                        <div class="message-timestamp">00:00</div>
+                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
+                    </div>
+
+                    <div class="message-instance">
+                        <div class="message-sender">kusera</div>
+                        <div class="message-timestamp">14:15</div>
+                        <div class="message-content">Hello World!</div>
+                    </div>
+
+                    <div class="date-divider">
+                        <hr class="divider-line"></hr>
+                        <div class="divider-label">Today</div>
+                    </div>
+
+                    <div class="message-instance">
+                        <div class="message-sender">jd</div>
+                        <div class="message-timestamp">15:44</div>
+                        <div class="message-content">Hi kusera!</div>
+                    </div>
                 </div>
             
-                <div class="message-instance">
-                    <div class="message-sender">jd</div>
-                    <div class="message-timestamp">15:44</div>
-                    <div class="message-content">Hi kusera!</div>
-                </div>
+                <div class="message-scroll-bar"></div>
             </div>
         
             <div class="message-input-container">
