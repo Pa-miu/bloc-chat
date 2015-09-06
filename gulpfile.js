@@ -47,7 +47,14 @@ gulp.task('copyCSS', function() {
 
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copyHTML']);
-    gulp.watch(path.STYLES, ['copyCSS']);
+    //gulp.watch(path.STYLES, ['copyCSS']);
+
+    gulp.watch(path.STYLES).on('change', function(changedFile) {
+        // Copy file manually
+        gulp.src(changedFile.path)
+            .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
+            .pipe(livereload());
+    });
     
     var watcher = watchify(browserify({
         entries: [path.ENTRY_POINT],
