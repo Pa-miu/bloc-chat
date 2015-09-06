@@ -11,10 +11,12 @@ var gulp = require('gulp'),
 var path = {
     HTML: 'src/index.html',
     STYLES: 'src/styles/**/*.css',
+    IMAGES: 'src/images/**/*.png',
     DEV_OUT: 'build.js',
     MINIFIED_OUT: 'build.min.js',
     APPEND_JS: 'js/',
     APPEND_STYLES: 'styles/',
+    APPEND_IMAGES: 'images/',
     DEST_PROD: 'prod/',
     DEST_DEV: 'dev/',
     ENTRY_POINT: 'src/js/app.js'
@@ -37,11 +39,17 @@ gulp.task('copyHTML', function() {
 });
 
 /*
-    Temporary until I decide to bundle styles together
+    Temporary until I write code to bundle styles together
  */
 gulp.task('copyCSS', function() {
     gulp.src(path.STYLES)
         .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
+        .pipe(livereload());
+});
+
+gulp.task('copyImages', function() {
+    gulp.src(path.IMAGES)
+        .pipe(gulp.dest(path.DEST_DEV + path.APPEND_IMAGES))
         .pipe(livereload());
 });
 
@@ -97,6 +105,12 @@ gulp.task('buildHTML', function() {
         .pipe(gulp.dest(path.DEST_PROD));
 });
 
+gulp.task('buildCSS', function() {
+    gulp.src(path.STYLES)
+        .pipe(gulp.dest(path.DEST_PROD + path.APPEND_STYLES))
+});
+
 /* Composited Tasks */
-gulp.task('default', ['refresh', 'copyHTML', 'copyCSS', 'watch' ]);
-gulp.task('production', ['buildHTML', 'build']);
+gulp.task('default', ['refresh', 'watch']);
+gulp.task('dev', ['copyHTML', 'copyCSS', 'copyImages']);
+gulp.task('production', ['buildHTML', 'buildCSS', 'build']);

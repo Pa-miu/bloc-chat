@@ -25,6 +25,7 @@
             * Every message is associated with a name and timestamp
             * Every message for a room persists on the server
             * Show joining and leaving of users
+            * Every user has a default "guest" icon next to their name
         b. Send
             * Send new message to the room associated with current username
             * Messages support Markdown
@@ -70,11 +71,18 @@
 
 ##Gulp Tasks
 #####gulp
-   * Builds `src/js` files into `dev/js` as `bundle.js`.
-   * Copies `index.html` into `dev` and replaces script sources with `bundle.js`.
-   * Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
+    * Watches for changes to `index.html` or `src/` and then recopies changed files to `dev`.
+    * Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
+    * Run `gulp dev` first for fresh development builds.
+    
+#####gulp dev
+    * Builds `src/js` files into `dev/js` as `bundle.js`.
+    * Copies `src/styles` into `dev/styles`.
+    * Copies `src/images` into `dev/images`.
+    * Copies `index.html` into `dev` and replaces `js` script sources with `build.js`.
 
 #####gulp production
-   * Builds and Uglifies `src/js` files into `prod/js` as `bundle.min.js`.
-   * Copies `index.html` into `prod` and replaces script sources with `bundle.min.js`.
+    * Builds and Uglifies `src/js` files into `prod/js` as `build.min.js`.
+    * Copies `src/styles` into `prod/styles`.
+    * Copies `index.html` into `prod` and replaces `js` script sources with `bundle.min.js`.
 
