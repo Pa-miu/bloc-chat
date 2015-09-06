@@ -1,5 +1,6 @@
 .message-box {
     display: table-cell;
+    position: relative;
     vertical-align: top;
 }
 
@@ -8,21 +9,27 @@
     left: 15rem;
     right: 0;
     height: 4rem;
-    padding: 0 2rem;
-    background-color: rgb(29, 31, 39);
+    padding: 1rem 2rem;
+    background-color: rgba(29, 31, 39, 0.49);
     z-index: 2;
 }
 
 .message-box .message-box-header .message-room-name {
-    position: absolute;
-    top: 0.7rem;
-    font-size: 2rem;
-    font-weight: 700;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 
-.message-box .message-list {
-    position: relative;
-    overflow-y: scroll;
+.message-box .message-list-wrapper{
+}
+
+.message-box .message-list-wrapper .message-list{
+    height: 40rem;
+    overflow-y: auto;
+    padding: 0 2rem;
+}
+
+.message-box .message-list-wrapper .message-scroll {
 }
 
 .message-box .message-input-container {
@@ -34,3 +41,4 @@
     background-color: white;
     z-index: 2;
 }
+

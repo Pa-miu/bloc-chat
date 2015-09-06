@@ -1,2 +1,16 @@
 .message-instance {
+    display: block;
+    margin-top: 1rem;
+}
+
+.message-instance .message-sender {
+    display: inline;
+    font-weight: 700;
+}
+
+.message-instance .message-timestamp {
+    display: inline;
+}
+
+.message-instance .message-content {
 }

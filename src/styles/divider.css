@@ -8,8 +8,8 @@
 .date-divider .divider-line {
     position: absolute;
     top: 1.2rem;
-    right: 1.5rem;
-    left: 1.5rem;
+    right: 0rem;
+    left: 0rem;
     border-top: 1px solid rgb(126, 126, 126);
     border-bottom: none;
 }
