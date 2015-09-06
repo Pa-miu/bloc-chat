@@ -58,9 +58,14 @@ gulp.task('watch', function() {
     //gulp.watch(path.STYLES, ['copyCSS']);
 
     gulp.watch(path.STYLES).on('change', function(changedFile) {
-        // Copy file manually
         gulp.src(changedFile.path)
             .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
+            .pipe(livereload());
+    });
+    
+    gulp.watch(path.IMAGES).on('change', function(changedFile) {
+        gulp.src(changedFile.path)
+            .pipe(gulp.dest(path.DEST_DEV + path.APPEND_IMAGES))
             .pipe(livereload());
     });
     
