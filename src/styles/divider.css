@@ -1,14 +1,15 @@
 .date-divider{
     position: relative;
-    padding: 1rem 3rem;
+    display: flex;
+    justify-content: center;
+    height: 3rem;
     margin-top: 1rem;
-    text-align: center;
     cursor: default;
 }
 
 .date-divider .divider-line {
     position: absolute;
-    top: 1.2rem;
+    top: 1.5rem;
     right: 1.5rem;
     left: 1.5rem;
     border-top: 1px solid rgb(126, 126, 126);
@@ -17,7 +18,8 @@
 
 .date-divider .divider-label {
     display: inline-block;
-    position: relative;
+    align-self: center;
     padding: 0 1rem;
-    background: rgb(29, 31, 39);
+    background-color: rgb(29, 31, 39);
+    z-index: 1;
 }
