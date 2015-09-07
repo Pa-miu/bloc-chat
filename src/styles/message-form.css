@@ -20,6 +20,8 @@
 }
 
 .message-form .message-send-wrapper{
+    display: flex;
+    justify-content: center;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -29,12 +31,15 @@
     cursor: pointer;
 }
 
-.message-form .message-send-wrapper .message-send-icon{
+.message-form .message-send-wrapper .message-send-button{
+    align-self: center;
     color: rgb(29, 31, 39);
     font-size: 1.5rem;
+    -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
-.message-form .message-send-wrapper .message-send-icon:hover{
+.message-form .message-send-wrapper .message-send-button:hover{
     color: rgb(115, 188, 121);
-    font-size: 1.7rem;
+    transform: scale(1.33);
 }
