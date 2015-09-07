@@ -22,9 +22,9 @@
 }
 
 .message-box .message-box-header .message-room-name {
-    color: white;
     font-size: 1.5rem;
     font-weight: 300;
+    color: white;
 }
 
 .message-box .message-list-wrapper{

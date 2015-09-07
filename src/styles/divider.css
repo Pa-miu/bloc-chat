@@ -1,7 +1,7 @@
 .date-divider{
-    position: relative;
     display: flex;
     justify-content: center;
+    position: relative;
     height: 3rem;
     margin-top: 1rem;
     cursor: default;
