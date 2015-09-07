@@ -1,6 +1,7 @@
 .date-divider{
-    padding: 1rem 3rem;
     position: relative;
+    padding: 1rem 3rem;
+    margin-top: 1rem;
     text-align: center;
     cursor: default;
 }

@@ -32,9 +32,10 @@
 
 .message-box .message-list-wrapper .message-list{
     position: absolute;
-    min-width: 10rem;
     top: 4rem;
     bottom: 4rem;
+    min-width: 10rem;
+    padding: 1rem 0;
     overflow-y: auto;
 }
 
