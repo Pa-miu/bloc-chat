@@ -1,11 +1,32 @@
 .message-form {
+    width: 100%;
+    height: 100%;
     padding: 1rem;
 }
 
 .message-form .message-input{
-    overflow: hidden;
+    display: inline-block;
     padding: 0.5rem;
     height: 2rem;   /* Add 1rem for every new line during height expansion */
-    width: 100%;
+    width: 90%;
+    overflow: hidden;
     resize: none;
+}
+
+.message-form .message-send-wrapper{
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.message-form .message-send-icon{
+    display: inline-block;
+    color: rgb(29, 31, 39);
+    font-size: 1.5rem;
+}
+
+.message-form .message-send-icon:hover{
+    color: rgb(115, 188, 121);
+    font-size: 1.7rem;
 }
