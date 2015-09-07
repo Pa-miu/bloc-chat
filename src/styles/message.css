@@ -5,7 +5,8 @@
     right: 0;
 }
 
-.room-sidebar-offset {
+.message-sidebar-offset
+{
     left: 15rem;
 }
 
@@ -52,7 +53,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    height: 4rem;
+    height: 4rem;   /* Add 1rem for every new line during height expansion */
     background-color: white;
     z-index: 2;
 }
