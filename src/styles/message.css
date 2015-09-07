@@ -1,15 +1,19 @@
 .message-box {
-    display: table-cell;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.message-box .room-sidebar-offset {
+.room-sidebar-offset {
     left: 15rem;
 }
 
 .message-box .message-box-header {
-    position: fixed;
-    height: 4rem;
+    position: absolute;
     right: 0;
+    left: 0;
+    height: 4rem;
     padding: 1rem 2rem;
     background-color: rgb(29, 31, 39);
     cursor: default;
@@ -27,6 +31,7 @@
     top: 0;
     bottom: 0;
     right: 0;
+    left: 0;
     z-index: 1
 }
 
@@ -43,10 +48,11 @@
 }
 
 .message-box .message-input-container {
-    height: 4rem;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 0;
+    left: 0;
+    height: 4rem;
     background-color: white;
     z-index: 2;
 }
