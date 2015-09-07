@@ -1,14 +1,15 @@
 .message-box {
     display: table-cell;
-    position: relative;
-    vertical-align: top;
+}
+
+.message-box .room-sidebar-offset {
+    left: 15rem;
 }
 
 .message-box .message-box-header {
     position: fixed;
-    left: 15rem;
-    right: 0;
     height: 4rem;
+    right: 0;
     padding: 1rem 2rem;
     background-color: rgb(29, 31, 39);
     cursor: default;
@@ -22,10 +23,18 @@
 }
 
 .message-box .message-list-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .message-box .message-list-wrapper .message-list{
-    height: 40rem;
+    position: absolute;
+    min-width: 10rem;
+    top: 4rem;
+    bottom: 4rem;
     overflow-y: auto;
 }
 
@@ -33,11 +42,10 @@
 }
 
 .message-box .message-input-container {
+    height: 4rem;
     position: fixed;
     bottom: 0;
-    left: 15rem;
     right: 0;
-    height: 4rem;
     background-color: white;
     z-index: 2;
 }
