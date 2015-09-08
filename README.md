@@ -56,11 +56,16 @@
             * Generate plaintext of room's history
         f. Scramble
             * Owners can force all active registered users to assume unique, randomly generated display names
+        g. Topic
+            * Owners can set a topic that's viewable in the header
     3. Message 
         a. Edit
             * Messages of registered users can be edited
         b. Delete
             * Messages of registered users can be deleted
+    4. Media Query
+        a. Smartphone
+            * Support compact layout for small vertical screens
         
 ##Structure
 ###Components
