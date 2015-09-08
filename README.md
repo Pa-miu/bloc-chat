@@ -89,15 +89,15 @@
 
 ##Gulp Tasks
 #####gulp
-    * Watches for changes to `index.html` or `src/` and then recopies changed files to `dev`.
+    * Runs `development` first and copies/bundles everything from `src` to `dev`
+    * Watches for changes to `index.html` or `src` and then copies changed files to `dev`.
     * Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
-    * Run `gulp dev` first for fresh development builds.
     
 #####gulp dev
     * Builds `src/js` files into `dev/js` as `bundle.js`.
+    * Copies `index.html` into `dev` and replaces `js` script sources with `build.js`.
     * Copies `src/styles` into `dev/styles`.
     * Copies `src/images` into `dev/images`.
-    * Copies `index.html` into `dev` and replaces `js` script sources with `build.js`.
 
 #####gulp production
     * Builds and Uglifies `src/js` files into `prod/js` as `build.min.js`.
