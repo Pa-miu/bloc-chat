@@ -69,6 +69,19 @@
         
 ##Structure
 ###Components
+    1. ChatController
+        a. RoomBox
+            i. RoomHeader
+            ii. RoomList
+        b. MessageBox
+            i. MessageHeader
+            ii. MessageList
+                * MessageInstance
+                * DateDivider
+            iii. MessageInput
+        c. CreateRoomModal
+        d. UserModal
+
 ###Dispatcher
 ###Actions
 ###Constants
