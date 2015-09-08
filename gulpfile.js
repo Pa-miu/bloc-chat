@@ -92,7 +92,7 @@ gulp.task('watch', function() {
     }));
     
     return watcher.on('update', function() {
-        watcher.bundle()
+        watcher.bundle().on('error', function(err){ console.log(err.message); })
             .pipe(source(path.DEV_OUT))
             .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS))
             .pipe(livereload());
