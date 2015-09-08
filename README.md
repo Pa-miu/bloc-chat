@@ -2,31 +2,70 @@
 >A chat app for [Bloc](https://www.bloc.io) made with React/Flux
 
 ##Design
-###User Stories
-    1. I want to change my username
-        a. Usernames should be unique
-        b. I want to be given a default username on entry
-        c. The change should reflect all my previous messages
-        
-    2. I want to see a list of rooms
-        a. I want to see a room by clicking on it
-        b. The server should remember the room I was last on
-        c. I want to see a splash page introducing the interface if I have no rooms (optional)
-    
-    3. I want to create chat rooms
-        a. I want to create using a modal and own the room
-        b. I want to destroy a room if I'm its owner
-        c. Rooms should destroy themselves if empty and inactive (advanced)
-    
-    4. I want to see all the messages of the current rooms
-        a. Messages should persist on the server
-        b. Messages should include timestamps
-        c. I want to go to the last unread message if I join a room (advanced)
-    
-    5. I want to send a message associated with my name to the current room
-        a. I want my messages to be Markdown compatible (advanced)
-        b. I want to edit my messages (advanced)
-        c. I want to delete my messages (advanced)
+###Basic Features
+    1. User
+        a. Change Username
+            * Usernames unique across all rooms
+            * Default username on new session
+        b. Saved Session
+            * Remember chosen username (if still available)
+            * Remember active room
+    2. Room
+        a. List
+            * Splash page to introduce interface on new session
+            * Join any room by clicking on it
+        b. Create
+            * Create a new room on the server with a modal form
+            * Room creator assumes ownership of the room
+            * Ownership passes to other users at the end of a user's session
+        d. Members
+            * Display active users in a room as well as the owner
+    3. Message 
+        a. List
+            * Every message is associated with a name and timestamp
+            * Every message for a room persists on the server
+            * Show joining and leaving of users
+            * Every user has a default "guest" icon next to their name
+        b. Send
+            * Send new message to the room associated with current username
+            * Messages support Markdown
+###Advanced Features
+    1. User
+        a. Register
+            * Creates a persistent user account with associated an email and password
+            * Access to additional featureset
+        b. Change Username
+            * Changed names propagate to all messages associated with registered user
+            * Registered users have hidden, unique numeric identifiers so they may use any name
+        c. Change Icon
+            * Changed icons propagate to all messages associated with registered user
+    2. Room
+        a. Subscription
+            * List of rooms "watched" by a registered user
+            * Can unsubscribe at any time
+            * Rooms remember subscribed users and will not "empty" unless all users unsubscribe
+        b. Members
+            * Display active users and whether they're an Owner, a Registered User, or a Temporary User
+        c. Create
+            * Ownership persists for registered users
+            * Ownership passes along subscribed users first
+        d. Delete
+            * Inactive rooms will self-delete
+            * Owners can delete their own room
+        e. Log
+            * Generate plaintext of room's history
+        f. Scramble
+            * Owners can force all active registered users to assume unique, randomly generated display names
+        g. Topic
+            * Owners can set a topic that's viewable in the header
+    3. Message 
+        a. Edit
+            * Messages of registered users can be edited
+        b. Delete
+            * Messages of registered users can be deleted
+    4. Media Query
+        a. Smartphone
+            * Support compact layout for small vertical screens
         
 ##Structure
 ###Components
@@ -37,11 +76,18 @@
 
 ##Gulp Tasks
 #####gulp
-   * Builds `src/js` files into `dev/js` as `bundle.js`.
-   * Copies `index.html` into `dev` and replaces script sources with `bundle.js`.
-   * Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
+    * Watches for changes to `index.html` or `src/` and then recopies changed files to `dev`.
+    * Includes `live-reload` for browsers with the [extension](http://livereload.com/extensions/).
+    * Run `gulp dev` first for fresh development builds.
+    
+#####gulp dev
+    * Builds `src/js` files into `dev/js` as `bundle.js`.
+    * Copies `src/styles` into `dev/styles`.
+    * Copies `src/images` into `dev/images`.
+    * Copies `index.html` into `dev` and replaces `js` script sources with `build.js`.
 
 #####gulp production
-   * Builds and Uglifies `src/js` files into `prod/js` as `bundle.min.js`.
-   * Copies `index.html` into `prod` and replaces script sources with `bundle.min.js`.
+    * Builds and Uglifies `src/js` files into `prod/js` as `build.min.js`.
+    * Copies `src/styles` into `prod/styles`.
+    * Copies `index.html` into `prod` and replaces `js` script sources with `bundle.min.js`.
 

@@ -1,0 +1,44 @@
+.message-form {
+    height: 100%;
+    width: 100%;
+}
+
+.message-form .message-input-wrapper{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 4rem;
+    height: 2rem;   /* Add 1rem for every new line during height expansion */
+}
+
+.message-form .message-input-wrapper .message-input{
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    overflow: hidden;
+    resize: none;
+}
+
+.message-form .message-send-wrapper{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.message-form .message-send-wrapper .message-send-button{
+    align-self: center;
+    font-size: 1.5rem;
+    color: rgb(29, 31, 39);
+    -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.message-form .message-send-wrapper .message-send-button:hover{
+    color: rgb(115, 188, 121);
+    transform: scale(1.33);
+}

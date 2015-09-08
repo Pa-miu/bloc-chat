@@ -1,0 +1,30 @@
+.message-instance {
+    display: block;
+    position: relative;
+    margin-top: 1rem;
+    padding: 0 1rem 0 4rem;
+}
+
+.message-instance .message-sender-icon{
+    position: absolute;
+    top: 0.25rem;
+    left: 1rem;
+    height: 3rem;
+    width: 3rem;
+    background-repeat: no-repeat;
+}
+
+.message-instance .message-sender {
+    display: inline;
+    font-weight: 700;
+    color: rgb(120, 167, 255);
+}
+
+.message-instance .message-timestamp {
+    display: inline;
+    font-weight: 300;
+    color: rgb(195, 239, 234);
+}
+
+.message-instance .message-content {
+}

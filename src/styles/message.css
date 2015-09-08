@@ -1,0 +1,60 @@
+.message-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.message-sidebar-offset
+{
+    left: 15rem;
+}
+
+.message-box .message-box-header {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 4rem;
+    padding: 1rem 2rem;
+    background-color: rgb(29, 31, 39);
+    cursor: default;
+    z-index: 2;
+}
+
+.message-box .message-box-header .message-room-name {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+}
+
+.message-box .message-list-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1
+}
+
+.message-box .message-list-wrapper .message-list{
+    position: absolute;
+    top: 4rem;
+    bottom: 4rem;
+    min-width: 10rem;
+    padding: 1rem 0;
+    overflow-y: auto;
+}
+
+.message-box .message-list-wrapper .message-scroll {
+}
+
+.message-box .message-input-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 4rem;   /* Add 1rem for every new line during height expansion */
+    background-color: white;
+    z-index: 2;
+}
+

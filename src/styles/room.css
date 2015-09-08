@@ -1,0 +1,64 @@
+.room-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15rem;
+    color: rgb(221, 221, 221);
+    background-color: rgb(69, 143, 163);
+    z-index: 2;
+}
+
+.room-box .room-hover:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.room-box .room-box-header{
+    height: 4rem;
+    width: 100%;
+}
+
+.room-box .room-box-header .room-box-title{
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+}
+
+.room-box .room-box-header .room-box-title:hover{
+    cursor: default;
+}
+
+.room-box .create-room-wrapper{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.room-box .create-room-wrapper .create-room-button{
+    align-self: center;
+    font-size: 1.5rem;
+     -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.room-box .create-room-wrapper .create-room-button:hover{
+    color: rgb(255, 255, 255);
+    transform: scale(1.33);
+}
+
+.room-box .room-node{
+    padding: 0.3rem 1.5rem;
+}
+
+.room-box .room-node:hover{
+    background-color: rgb(100, 173, 91);
+}
