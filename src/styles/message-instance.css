@@ -28,4 +28,5 @@
 }
 
 .message-instance .message-content {
+    white-space: pre-wrap;
 }
