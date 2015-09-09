@@ -45,16 +45,3 @@
     overflow-y: auto;
 }
 
-.message-box .message-list-wrapper .message-scroll {
-}
-
-.message-box .message-input-container {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 4rem;   /* Add 1rem for every new line during height expansion */
-    background-color: white;
-    z-index: 2;
-}
-

@@ -53,6 +53,21 @@ gulp.task('copyImages', function() {
         .pipe(livereload());
 });
 
+gulp.task('bundleJS', function() {
+    var browser = browserify({
+        entries: [path.ENTRY_POINT],
+        transform: [reactify],
+        debug: true,
+        cache: {}, packageCache: {}, fullpaths: true
+    })
+    
+    browser.bundle()
+            .pipe(source(path.DEV_OUT))
+            .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS));
+    
+    console.log('Bundled scripts');
+});
+
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copyHTML']);
     //gulp.watch(path.STYLES, ['copyCSS']);
@@ -77,11 +92,11 @@ gulp.task('watch', function() {
     }));
     
     return watcher.on('update', function() {
-        watcher.bundle()
+        watcher.bundle().on('error', function(err){ console.log(err.message); })
             .pipe(source(path.DEV_OUT))
             .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS))
-            .pipe(livereload())
-            console.log('Updated');
+            .pipe(livereload());
+        console.log('Updated');
     })
         .bundle()
         .pipe(source(path.DEV_OUT))
@@ -116,6 +131,6 @@ gulp.task('buildCSS', function() {
 });
 
 /* Composited Tasks */
-gulp.task('default', ['refresh', 'watch']);
-gulp.task('dev', ['copyHTML', 'copyCSS', 'copyImages']);
+gulp.task('default', ['development', 'refresh', 'watch']);
+gulp.task('development', ['bundleJS', 'copyHTML', 'copyCSS', 'copyImages']);
 gulp.task('production', ['buildHTML', 'buildCSS', 'build']);
