@@ -15,87 +15,14 @@
         <link rel="stylesheet" type="text/css" href="styles/message-form.css">
         <link rel="stylesheet" type="text/css" href="styles/divider.css">
         <!-- External libraries -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flux/2.1.1/Flux.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     </head>
     <body>
         <div id="app">
         </div>
         <!-- build:js -->
-        <div class="room-box noSelect">
-            <div class="room-box-header">
-                <div class="room-box-title">Open Rooms</div>
-                <div class="create-room-wrapper">
-                     <div class="ion-plus-circled create-room-button room-hover"></div>
-                </div>
-            </div>
-            <div class="room-node room-hover">Room 1</div>
-            <div class="room-node room-hover">Room 2</div>
-            <div class="room-node room-hover">Room 3</div>
-        </div>
-        
-        <div class="message-box message-sidebar-offset">
-            <div class="message-box-header noSelect message-sidebar-offset">
-                <div class="message-room-name">
-                    Room 1
-                </div> 
-            </div>
-            
-            <div class="message-list-wrapper">
-                <div class="message-list">
-                    <div class="message-instance">
-                        <div class="message-sender-icon"></div>
-                        <div class="message-sender">Ipsumus</div>
-                        <div class="message-timestamp">00:00</div>
-                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                    </div>
-                    <div class="message-instance">
-                        <div class="message-sender-icon"></div>
-                        <div class="message-sender">Ipsumus</div>
-                        <div class="message-timestamp">00:00</div>
-                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                    </div>
-                    <div class="message-instance">
-                        <div class="message-sender-icon"></div>
-                        <div class="message-sender">Ipsumus</div>
-                        <div class="message-timestamp">00:00</div>
-                        <div class="message-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-                    </div>
-
-                    <div class="message-instance">
-                        <div class="message-sender-icon" style="background-image: url('images/icon-default1.png')"></div>
-                        <div class="message-sender">kusera</div>
-                        <div class="message-timestamp">14:15</div>
-                        <div class="message-content">Hello World!</div>
-                    </div>
-
-                    <div class="date-divider">
-                        <div class="divider-line"></div>
-                        <div class="divider-label">Today</div>
-                    </div>
-
-                    <div class="message-instance">
-                        <div class="message-sender-icon" style="background-image: url('images/icon-default2.png')"></div>
-                        <div class="message-sender">jd</div>
-                        <div class="message-timestamp">15:44</div>
-                        <div class="message-content">Hi kusera!</div>
-                    </div>
-                </div>
-            
-                <div class="message-scroll"></div>
-            </div>
-        
-            <div class="message-input-container message-sidebar-offset">
-                <form class="message-form">
-                    <div class="message-input-wrapper">
-                        <textarea type="text" class="message-input" placeholder="Submit a new message..."></textarea>
-                    </div>
-                    <div class="message-send-wrapper">
-                        <div class="ion-paper-airplane message-send-button"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
         <!-- endbuild -->
     </body>
 </html>
