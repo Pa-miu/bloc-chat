@@ -1,5 +1,6 @@
 var MessageHeader = require('./MessageHeader');
 var MessageList = require('./MessageList');
+var MessageForm = require('./MessageForm');
 
 // Hardcoded messages for testing
 var mLorem = {
@@ -40,6 +41,7 @@ var MessageBox = React.createClass({
             <div className="message-box message-sidebar-offset">
                 <MessageHeader roomname="Room 1"/>
                 <MessageList messages={messageArray}/>
+                <MessageForm/>
             </div>
         );
     }

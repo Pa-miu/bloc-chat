@@ -1,6 +1,11 @@
 .message-form {
-    height: 100%;
-    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 4rem;   /* Add 1rem for every new line during height expansion */
+    background-color: white;
+    z-index: 2;
 }
 
 .message-form .message-input-wrapper{
