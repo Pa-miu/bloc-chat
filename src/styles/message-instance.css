@@ -22,6 +22,7 @@
 
 .message-instance .message-timestamp {
     display: inline;
+    padding: 0 0.5rem;
     font-weight: 300;
     color: rgb(195, 239, 234);
 }
