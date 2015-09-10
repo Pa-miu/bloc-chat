@@ -1,6 +1,6 @@
 var AppConstants = {
-    CREATE_ROOM : "CREATE_ROOM",
-    CLOSE_ROOM : "CLOSE_ROOM"
+    CREATE_ROOM : 'CREATE_ROOM',
+    DELETE_ROOM : 'DELETE_ROOM'
 };
 
 module.exports = AppConstants;

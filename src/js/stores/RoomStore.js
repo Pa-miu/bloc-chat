@@ -11,7 +11,7 @@ var createRoom = function(newRoom){
     _rooms.push(newRoom);
 };
 
-var closeRoom = function(deleteRoom){
+var deleteRoom = function(deleteRoom){
     delete _rooms[deleteRoom];
 };
 
@@ -34,8 +34,8 @@ AppDispatcher.register(function(payload) {
             createRoom(action.data);
             RoomStore.emit(CHANGE_EVENT);
             break;
-        case AppConstants.CLOSE_ROOM:
-            closeRoom(action.data);
+        case AppConstants.DELETE_ROOM:
+            deleteRoom(action.data);
             RoomStore.emit(CHANGE_EVENT);
             break;
         default:

@@ -22,8 +22,8 @@ var RoomBox = React.createClass({
         RoomActions.createRoom(newRoom);
     },
     
-    handleCloseRoom : function(deleteRoom){
-        RoomActions.closeRoom(deleteRoom);
+    handleDeleteRoom : function(deleteRoom){
+        RoomActions.deleteRoom(deleteRoom);
     },
     
     _onChange : function() {

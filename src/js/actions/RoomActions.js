@@ -8,9 +8,9 @@ var RoomActions = {
             data : newRoom
         });
     },
-    closeRoom : function(deleteRoom) {
+    deleteRoom : function(deleteRoom) {
         AppDispatcher.handleViewAction({
-            actionType : AppConstants.CLOSE_ROOM,
+            actionType : AppConstants.DELETE_ROOM,
             data : deleteRoom
         });
     }
