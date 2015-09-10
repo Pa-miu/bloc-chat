@@ -1,5 +1,7 @@
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
+var RoomStore = require('../stores/RoomStore');
+var RoomActions = require('../actions/RoomActions');
 
 var RoomBox = React.createClass({
     render : function () {
