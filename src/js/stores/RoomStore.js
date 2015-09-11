@@ -7,10 +7,20 @@ var CHANGE_EVENT = 'change';
 
 var _rooms = [];
 
-var setRooms = function(rooms){
+//var setRooms = function(rooms){
+// This is actually an addRooms function:
+var addRooms = function(rooms) {
     for (var key in rooms) {
         _rooms.push(rooms[key]);
     }
+    // It could be refactored to call an addRoom() function, responsible for
+    // doing _rooms.push(room);
+};
+
+// Refreshing the list of rooms is pretty straightforward.
+var refreshRooms = function(rooms) {
+  _rooms = [];
+  addRooms(rooms);
 }
 
 var createRoom = function(newRoom){
@@ -37,7 +47,7 @@ AppDispatcher.register(function(payload) {
     var action = payload.action;
     switch(action.actionType) {
         case AppConstants.ROOMS_FETCHED:
-            setRooms(action.data);
+            refreshRooms(action.data);
             RoomStore.emit(CHANGE_EVENT);
             break;
         case AppConstants.CREATE_ROOM:
