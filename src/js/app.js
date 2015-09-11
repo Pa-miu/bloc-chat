@@ -2,4 +2,6 @@
 var ChatController = require('./components/ChatController');
 var ChatAPI = require('./api/ChatAPI');
 
+ChatAPI.getRoom();
+
 React.render(<ChatController />, document.getElementById('app'));
