@@ -22,8 +22,19 @@ var ChatAPI = {
             }
         );
     },
-    createRoom : function(){
+    submitRoom : function(submitRoom){
+        
     }
 };
 
+AppDispatcher.register(function(payload) {
+    var action = payload.action;
+    switch(action.actionType) {
+        case AppConstants.NEW_ROOM_SUBMIT:
+            submitRoom(action.data);
+            break;
+        default:
+            return true;
+    }
+});
 module.exports = ChatAPI;
