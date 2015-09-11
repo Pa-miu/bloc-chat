@@ -14,14 +14,6 @@ var setRooms = function(rooms){
     }
 }
 
-var createRoom = function(newRoom){
-    _rooms.push(newRoom);
-};
-
-var deleteRoom = function(deleteRoom){
-    delete _rooms[deleteRoom];
-};
-
 var RoomStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
         this.on(CHANGE_EVENT, callback);
@@ -40,18 +32,9 @@ AppDispatcher.register(function(action) {
             setRooms(action.data);
             RoomStore.emit(CHANGE_EVENT);
             break;
-        case AppConstants.CREATE_ROOM:
-            createRoom(action.data);
-            RoomStore.emit(CHANGE_EVENT);
-            break;
-        case AppConstants.DELETE_ROOM:
-            deleteRoom(action.data);
-            RoomStore.emit(CHANGE_EVENT);
-            break;
         default:
             return true;
     }
 });
-
 
 module.exports = RoomStore;
