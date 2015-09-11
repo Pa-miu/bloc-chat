@@ -1,12 +1,13 @@
+var RoomActions = require('../actions/RoomActions');
+
 var RoomHeader = React.createClass({
     _onClick : function() {
-        var dummyRoom = {
+        var newRoom = {
             name : "Room 1",
-            URL : "Room1.db",
-            id : "r1"
         };
-        this.props.create(dummyRoom);
+        this.props.create(newRoom);
     },
+    
     render : function () {
         return(
             <div className="room-box-header">
