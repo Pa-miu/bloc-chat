@@ -33,9 +33,8 @@ var RoomStore = assign({}, EventEmitter.prototype, {
     }
 });
 
-AppDispatcher.register(function(payload) {
-    var action = payload.action;
-    switch(action.actionType) {
+AppDispatcher.register(function(action) {
+    switch(action.type) {
         case AppConstants.ROOMS_FETCHED:
             setRooms(action.data);
             RoomStore.emit(CHANGE_EVENT);

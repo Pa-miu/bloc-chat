@@ -28,13 +28,13 @@ var ChatAPI = {
 };
 
 ChatAPI.dispatchToken = AppDispatcher.register(function(payload) {
-    var action = payload.action;
-    switch(action.actionType) {
+    switch(payload.type) {
         case AppConstants.NEW_ROOM_SUBMIT:
-            ChatAPI.submitRoom(action.data);
+            ChatAPI.submitRoom(payload.data);
             break;
         default:
             return true;
     }
 });
+
 module.exports = ChatAPI;
