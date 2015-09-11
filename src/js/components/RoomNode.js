@@ -1,4 +1,4 @@
-var RoomNode = React.createClass({
+var RoomNode = React.createClass({                          
     render : function() {
         return (
             <div className="room-node room-hover">
@@ -7,5 +7,9 @@ var RoomNode = React.createClass({
         );
     }
 });
+
+RoomNode.fromObject = function(object){
+    return <RoomNode name={object.name}/>
+}
 
 module.exports = RoomNode;
