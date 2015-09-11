@@ -8,6 +8,7 @@ var CHANGE_EVENT = 'change';
 var _rooms = [];
 
 var setRooms = function(rooms){
+    _rooms.length = 0;
     for (var key in rooms) {
         _rooms.push(rooms[key]);
     }
