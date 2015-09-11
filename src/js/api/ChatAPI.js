@@ -12,7 +12,7 @@ var paths = {
 
 var ChatAPI = {
     getRooms : function(){
-        firebaseRef.child(paths.rooms).once('value', 
+        firebaseRef.child(paths.rooms).on('value', 
             function(data) {
                 RoomActions.roomFetched(data.val());
             },
@@ -23,7 +23,22 @@ var ChatAPI = {
     },
     createRoom : function(room){
         var key = room.name.toLowerCase();
-        firebaseRef.child(paths.rooms).update({[key] : room});
+        
+        firebaseRef.child(paths.rooms + key).once('value', function(data) {
+            if (!data.exists()) {
+            firebaseRef.child(paths.rooms + key).set(room, function(error){
+                if (error) {
+                    console.log('ChatAPI.createRoom() encountered an error: ' + error.getCode());
+                }
+                else {
+                    console.log('ChatAPI.createRoom() was successful, updating list of rooms...');
+                    ChatAPI.getRooms();
+                }
+            });
+        }
+        });
+        
+        
     }
 };
 
