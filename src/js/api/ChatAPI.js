@@ -11,7 +11,7 @@ var paths = {
 }
 
 var ChatAPI = {
-    getRoom : function(){
+    getRooms : function(){
         firebaseRef.child(paths.rooms).on('value', 
             function(data) {
                 RoomActions.roomFetched(data.val());
@@ -21,16 +21,16 @@ var ChatAPI = {
             }
         );
     },
-    submitRoom : function(submitRoom){
-        var key = submitRoom.name.toLowerCase();
-        firebaseRef.child(paths.rooms).update({[key] : submitRoom});
+    createRoom : function(room){
+        var key = room.name.toLowerCase();
+        firebaseRef.child(paths.rooms).update({[key] : room});
     }
 };
 
-ChatAPI.dispatchToken = AppDispatcher.register(function(payload) {
-    switch(payload.type) {
-        case AppConstants.NEW_ROOM_SUBMIT:
-            ChatAPI.submitRoom(payload.data);
+ChatAPI.dispatchToken = AppDispatcher.register(function(action) {
+    switch(action.type) {
+        case AppConstants.CREATE_ROOM:
+            ChatAPI.createRoom(action.data);
             break;
         default:
             return true;

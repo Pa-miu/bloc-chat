@@ -18,16 +18,12 @@ var RoomBox = React.createClass({
         RoomStore.removeChangeListener(this._onChange);
     },
     
-    handleSubmitRoom : function(submitRoom){
-        RoomActions.submitRoom(submitRoom);
+    handleCreateRoom : function(room){
+        RoomActions.createRoom(room);
     },
     
-    handleCreateRoom : function(newRoom){
-        RoomActions.createRoom(newRoom);
-    },
-    
-    handleDeleteRoom : function(deleteRoom){
-        RoomActions.deleteRoom(deleteRoom);
+    handleDeleteRoom : function(room){
+        RoomActions.deleteRoom(room);
     },
     
     _onChange : function() {
@@ -40,7 +36,7 @@ var RoomBox = React.createClass({
         var roomNodes = this.state.rooms.map(RoomNode.fromObject);
         return (
             <div className="room-box noSelect">
-                <RoomHeader title="Open Rooms" create={this.handleSubmitRoom}/>
+                <RoomHeader title="Open Rooms" create={this.handleCreateRoom}/>
                 {roomNodes}
             </div>
         );

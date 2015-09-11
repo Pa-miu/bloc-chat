@@ -8,22 +8,16 @@ var RoomActions = {
             data : json
         });
     },
-    submitRoom : function(submitRoom) {
-        AppDispatcher.handleAction({
-            type : AppConstants.NEW_ROOM_SUBMIT,
-            data : submitRoom
-        });
-    },
-    createRoom : function(createRoom) {
+    createRoom : function(room) {
         AppDispatcher.handleAction({
             type : AppConstants.CREATE_ROOM,
-            data : createRoom
+            data : room
         });
     },
-    deleteRoom : function(deleteRoom) {
+    deleteRoom : function(room) {
         AppDispatcher.handleAction({
             type : AppConstants.DELETE_ROOM,
-            data : deleteRoom
+            data : room
         });
     }
     
