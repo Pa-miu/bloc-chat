@@ -9,33 +9,33 @@ var RoomBox = React.createClass({
             rooms : RoomStore.getRooms()
         }
     },
-    
+
     componentDidMount : function(){
         RoomStore.addChangeListener(this._onChange);
     },
-    
+
     componentWillUnmount : function(){
         RoomStore.removeChangeListener(this._onChange);
     },
-    
+
     handleSubmitRoom : function(submitRoom){
         RoomActions.submitRoom(submitRoom);
     },
-    
+
     handleCreateRoom : function(newRoom){
         RoomActions.createRoom(newRoom);
     },
-    
+
     handleDeleteRoom : function(deleteRoom){
         RoomActions.deleteRoom(deleteRoom);
     },
-    
+
     _onChange : function() {
         this.setState({
-            rooms : RoomStore.getRooms()
+            rooms: RoomStore.getRooms()
         })
     },
-    
+
     render : function () {
         var roomNodes = this.state.rooms.map(RoomNode.fromObject);
         return (

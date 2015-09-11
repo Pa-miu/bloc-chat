@@ -12,7 +12,7 @@ var paths = {
 
 var ChatAPI = {
     getRoom : function(){
-        firebaseRef.child(paths.rooms).on('value', 
+        firebaseRef.child(paths.rooms).on('value',
             function(data) {
                 RoomActions.roomFetched(data.val());
             },
@@ -23,7 +23,20 @@ var ChatAPI = {
     },
     submitRoom : function(submitRoom){
         var key = submitRoom.name.toLowerCase();
-        firebaseRef.child(paths.rooms).update({[key] : submitRoom});
+        // https://www.firebase.com/docs/web/guide/saving-data.html#section-completion-callback
+        firebaseRef.child(paths.rooms).update({[key] : submitRoom}, function(error) {
+          if (error) {
+            // One should probably display an error to the user, but for now:
+            console.log('ChatAPI.submitRoom() was unsuccessful: ' + error);
+          } else {
+            console.log('ChatAPI.submitRoom() was successful, updating list of rooms…')
+            // One may either update the list of rooms "locally" by triggering
+            // an action, such as:
+            // RoomActions.roomCreated(submitRoom)
+            // Or, by fetching the full list from Firebase again (safer?):
+            ChatAPI.getRoom();
+          }
+        });
     }
 };
 
