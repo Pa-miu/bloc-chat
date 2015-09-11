@@ -1,5 +1,3 @@
-var RoomActions = require('../actions/RoomActions');
-
 var RoomHeader = React.createClass({
     _onClick : function() {
         var newRoom = {
