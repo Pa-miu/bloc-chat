@@ -3,11 +3,8 @@ var RoomNode = require('./RoomNode');
 var RoomStore = require('../stores/RoomStore');
 var RoomActions = require('../actions/RoomActions');
 
-var convertRoom = function(room){
-    var newNode = (
-        <RoomNode name={room.name}/>
-    );
-    return newNode;
+var asComponent = function(room){
+    return <RoomNode name={room.name}/>;
 }
 
 var RoomBox = React.createClass({
@@ -44,7 +41,7 @@ var RoomBox = React.createClass({
     },
     
     render : function () {
-        var roomNodes = this.state.rooms.map(convertRoom);
+        var roomNodes = this.state.rooms.map(asComponent);
         return (
             <div className="room-box noSelect">
                 <RoomHeader title="Open Rooms" create={this.handleSubmitRoom}/>
