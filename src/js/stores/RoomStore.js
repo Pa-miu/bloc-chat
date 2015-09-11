@@ -7,10 +7,10 @@ var CHANGE_EVENT = 'change';
 
 var _rooms = [];
 
-var setRooms = function(rooms){
-    _rooms.length = 0;
-    for (var key in rooms) {
-        _rooms.push(rooms[key]);
+var setRooms = function(fetchedRooms){
+    _rooms.splice(0, _rooms.length);
+    for (var key in fetchedRooms) {
+        _rooms.push(fetchedRooms[key]);
     }
 }
 
