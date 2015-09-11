@@ -12,12 +12,12 @@ var paths = {
 
 var ChatAPI = {
     getRooms : function(){
-        firebaseRef.child(paths.rooms).on('value', 
+        firebaseRef.child(paths.rooms).once('value', 
             function(data) {
                 RoomActions.roomFetched(data.val());
             },
-            function(err) {
-                console.log('ChatAPI.getRoom() encountered an error: ' + err.getCode());
+            function(error) {
+                console.log('ChatAPI.getRoom() encountered an error: ' + error.getCode());
             }
         );
     },
