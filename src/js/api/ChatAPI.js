@@ -10,28 +10,28 @@ var paths = {
     members : '/members/'
 }
 
-
 var ChatAPI = {
     getRoom : function(){
-        firebaseRef.child(paths.rooms).once('value', 
+        firebaseRef.child(paths.rooms).on('value', 
             function(data) {
                 RoomActions.roomFetched(data.val());
             },
             function(err) {
-                console.log('getRoom encountered an error: ' + err.getCode());
+                console.log('ChatAPI.getRoom() encountered an error: ' + err.getCode());
             }
         );
     },
     submitRoom : function(submitRoom){
-        
+        var key = submitRoom.name.toLowerCase();
+        firebaseRef.child(paths.rooms).update({[key] : submitRoom});
     }
 };
 
-AppDispatcher.register(function(payload) {
+ChatAPI.dispatchToken = AppDispatcher.register(function(payload) {
     var action = payload.action;
     switch(action.actionType) {
         case AppConstants.NEW_ROOM_SUBMIT:
-            submitRoom(action.data);
+            ChatAPI.submitRoom(action.data);
             break;
         default:
             return true;
