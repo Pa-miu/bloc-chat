@@ -1,18 +1,13 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
+var ChatAPI = require('../api/ChatAPI');
 
 var RoomActions = {
-    createRoom : function(newRoom) {
-        AppDispatcher.handleViewAction({
-            actionType : AppConstants.CREATE_ROOM,
-            data : newRoom
-        });
+    createRoom : function(room) {
+        ChatAPI.createRoom(room);
     },
-    closeRoom : function(deleteRoom) {
-        AppDispatcher.handleViewAction({
-            actionType : AppConstants.CLOSE_ROOM,
-            data : deleteRoom
-        });
+    deleteRoom : function(room) {
+        ChatAPI.deleteRoom(room);
     }
     
 };

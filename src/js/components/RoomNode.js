@@ -1,11 +1,15 @@
-var RoomNode = React.createClass({
+var RoomNode = React.createClass({                          
     render : function() {
         return (
-            <div className="room-node room-hover" data-id={this.props.id} data-url={this.props.url}>
+            <div className="room-node room-hover">
                 {this.props.name}
             </div>
         );
     }
 });
+
+RoomNode.fromObject = function(object){
+    return <RoomNode name={object.name}/>
+}
 
 module.exports = RoomNode;
