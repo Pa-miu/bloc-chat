@@ -5,7 +5,6 @@
     width: 15rem;
     color: rgb(221, 221, 221);
     background-color: rgb(69, 143, 163);
-    z-index: 2;
 }
 
 .room-box .room-hover:hover{
