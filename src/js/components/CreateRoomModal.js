@@ -5,7 +5,7 @@ var CreateRoomModal = React.createClass({
     
     _handleSubmit : function() {
         var newRoom = {
-            name = "";
+            name : ""
         };
         this.props.create(newRoom);
     },
