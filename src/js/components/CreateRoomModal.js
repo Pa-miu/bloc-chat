@@ -15,11 +15,11 @@ var CreateRoomModal = React.createClass({
             <div className="modal-background">
                 <form className="modal-form">
                     <div className="modal-header">
-                        "Create a New Room"
+                        Create a New Room
                     </div>
                     <div className="modal-body">
                         <label className="modal-label">
-                            "Room name:"
+                            Room name:
                             <input className="modal-input"></input>
                         </label>
                     </div>
