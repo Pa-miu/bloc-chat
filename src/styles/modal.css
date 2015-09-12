@@ -1,4 +1,4 @@
-.modal-background {
+.modal-dialog {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,7 +9,7 @@
     z-index: 9999;
 }
 
-.modal-background .modal-form {
+.modal-dialog .modal-form {
     position: fixed;
     top: 10%;
     left: 50%;
@@ -20,23 +20,23 @@
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
-.modal-background .modal-form .modal-header {
+.modal-dialog .modal-form .modal-header {
 }
 
-.modal-background .modal-body {
+.modal-dialog .modal-body {
 }
 
-.modal-background .modal-label {
+.modal-dialog .modal-label {
 }
 
-.modal-background .modal-input {
+.modal-dialog .modal-input {
 }
 
-.modal-background .modal-footer {
+.modal-dialog .modal-footer {
 }
 
-.modal-background .modal-footer .modal-cancel {
+.modal-dialog .modal-footer .modal-cancel {
 }
 
-.modal-background .modal-footer .modal-submit {
+.modal-dialog .modal-footer .modal-submit {
 }

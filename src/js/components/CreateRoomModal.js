@@ -12,7 +12,7 @@ var CreateRoomModal = React.createClass({
     
     render : function(){
         return (
-            <div className="modal-background">
+            <div className="modal-dialog">
                 <form className="modal-form">
                     <div className="modal-header">
                         Create a New Room
