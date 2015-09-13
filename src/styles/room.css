@@ -44,14 +44,13 @@
 
 .room-box .create-room-wrapper .create-room-button{
     align-self: center;
+    color: rgb(221, 221, 221);
     font-size: 1.5rem;
-    -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
-    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
 .room-box .create-room-wrapper .create-room-button:hover{
     color: rgb(255, 255, 255);
-    transform: scale(1.33);
+    font-size: 1.9rem;
 }
 
 .room-box .room-node{
