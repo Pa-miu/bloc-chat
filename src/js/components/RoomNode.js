@@ -1,3 +1,5 @@
+var React = require('React');
+
 var RoomNode = React.createClass({                          
     render : function() {
         return (
@@ -7,9 +9,5 @@ var RoomNode = React.createClass({
         );
     }
 });
-
-RoomNode.fromObject = function(object){
-    return <RoomNode name={object.name}/>
-}
 
 module.exports = RoomNode;

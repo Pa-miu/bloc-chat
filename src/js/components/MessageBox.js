@@ -1,9 +1,12 @@
+var React = require('React');
+
 var MessageHeader = require('./MessageHeader');
 var MessageList = require('./MessageList');
 var MessageForm = require('./MessageForm');
 
 // Hardcoded messages for testing
 var mLorem = {
+    id : "1",
     iconURL : "",
     sender : "Ipsumus",
     timestamp : "00:00",
@@ -11,6 +14,7 @@ var mLorem = {
 };
 
 var mKusera = {
+    id : "2",
     iconURL : "images/icon-default1.png",
     sender : "kusera",
     timestamp : "14:15",
@@ -18,10 +22,12 @@ var mKusera = {
 };
 
 var mDivider = {
+    id : "3",
     date : (new Date())
 };
 
 var mJD = {
+    id : "4",
     iconURL : "images/icon-default2.png",
     sender : "jd",
     timestamp : "15:44",

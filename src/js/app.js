@@ -1,6 +1,8 @@
 'use strict';
-var ChatController = require('./components/ChatController');
+var React = require('React');
+
 var ChatAPI = require('./api/ChatAPI');
+var ChatController = require('./components/ChatController');
 
 ChatAPI.getRooms();
 

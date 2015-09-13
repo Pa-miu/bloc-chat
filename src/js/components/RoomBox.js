@@ -1,7 +1,8 @@
+var React = require('React');
+
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
 var RoomStore = require('../stores/RoomStore');
-var RoomActions = require('../actions/RoomActions');
 
 var RoomBox = React.createClass({
     getInitialState : function() {
@@ -18,25 +19,21 @@ var RoomBox = React.createClass({
         RoomStore.removeChangeListener(this._onChange);
     },
     
-    handleCreateRoom : function(room){
-        RoomActions.createRoom(room);
-    },
-    
-    handleDeleteRoom : function(room){
-        RoomActions.deleteRoom(room);
-    },
-    
     _onChange : function() {
         this.setState({
             rooms : RoomStore.getRooms()
         })
     },
     
+    objectToRoom : function(object) {
+        return <RoomNode key={object.name} name={object.name}/>
+    },
+    
     render : function () {
-        var roomNodes = this.state.rooms.map(RoomNode.fromObject);
+        var roomNodes = this.state.rooms.map(this.objectToRoom);
         return (
-            <div className="room-box noSelect">
-                <RoomHeader title="Open Rooms" create={this.handleCreateRoom}/>
+            <div className="room-box no-select">
+                <RoomHeader title="Open Rooms" toggle={this.props.toggle}/>
                 {roomNodes}
             </div>
         );

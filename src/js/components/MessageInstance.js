@@ -1,3 +1,5 @@
+var React = require('React');
+
 var MessageInstance = React.createClass({
     render : function () {
         var bgStyle = {

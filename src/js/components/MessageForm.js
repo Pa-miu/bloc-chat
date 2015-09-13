@@ -1,3 +1,5 @@
+var React = require('React');
+
 var MessageForm = React.createClass({
     render : function () {
         return (
