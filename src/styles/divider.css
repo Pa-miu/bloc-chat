@@ -21,4 +21,5 @@
     align-self: center;
     padding: 0 1rem;
     background-color: rgb(29, 31, 39);
+    z-index: 3;
 }
