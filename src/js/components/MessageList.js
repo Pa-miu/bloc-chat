@@ -1,3 +1,4 @@
+var React = require('React');
 var MessageInstance = require('./MessageInstance');
 var DateDivider = require('./DateDivider');
 
