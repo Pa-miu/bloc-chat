@@ -1,3 +1,5 @@
+var React = require('React');
+
 var RoomHeader = React.createClass({
     render : function () {
         return(

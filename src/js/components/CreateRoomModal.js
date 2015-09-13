@@ -1,3 +1,4 @@
+var React = require('React');
 var RoomActions = require('../actions/RoomActions');
 
 var CreateRoomModal = React.createClass({    

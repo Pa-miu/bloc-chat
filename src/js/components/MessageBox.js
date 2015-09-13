@@ -1,3 +1,4 @@
+var React = require('React');
 var MessageHeader = require('./MessageHeader');
 var MessageList = require('./MessageList');
 var MessageForm = require('./MessageForm');

@@ -1,3 +1,5 @@
+var React = require('React');
+
 var RoomNode = React.createClass({                          
     render : function() {
         return (

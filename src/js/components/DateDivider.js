@@ -1,3 +1,5 @@
+var React = require('React');
+
 var DateDivider = React.createClass({
     render : function () {
         var options = {month: 'long', day: 'numeric', year: 'numeric'};

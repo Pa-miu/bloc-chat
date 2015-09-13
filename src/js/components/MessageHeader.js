@@ -1,3 +1,5 @@
+var React = require('React');
+
 var MessageHeader = React.createClass({
     render : function () {
         return (
