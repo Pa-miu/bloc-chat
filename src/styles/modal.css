@@ -46,13 +46,14 @@
     padding-bottom: 3rem;
     background-color: rgb(240, 240, 240);
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
-    -webkit-transform: translateY(3rem);
-	-moz-transform: translateY(3rem);
-	transform: translateY(3rem);
 }
 
 .modal-form.animate-enter {
     opacity: 0.01;
+    -webkit-transform: translateY(3rem);
+	-moz-transform: translateY(3rem);
+	transform: translateY(3rem);
+    transition: all 0.2s ease-in;
 }
 
 .modal-form.animate-enter.animate-enter-active  {
@@ -64,9 +65,10 @@
 
 .modal-form.animate-leave {
     opacity: 1;
+    transition: all 0.2s ease-in;
 }
 
-.modal-form.animate-leave.animate-enter-active  {
+.modal-form.animate-leave.animate-leave-active  {
     opacity: 0.01;
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);

@@ -18,25 +18,19 @@ var ChatController = React.createClass({
         this.setState({roomModal : !this.state.roomModal});
     },
     
-    generateRoomCreateModal : function(modalOn) {
-        if (modalOn) {
-            return (
-                <CreateRoomModal toggle={this.handleRoomCreateToggle}/>
-            )
-        }
-        else {
-            return null;
-        }
+    generateRoomCreateModal : function() {
+        return (
+            <CreateRoomModal toggle={this.handleRoomCreateToggle}/>
+        )
     },
     
     render : function() {
-        var roomModal = this.generateRoomCreateModal(this.state.roomModal);
         return (
             <div>   
                 <RoomBox toggle={this.handleRoomCreateToggle}/>
                 <MessageBox/>
                 <ReactCSSTransitionGroup transitionName="animate">
-                    {roomModal}
+                    {this.state.roomModal ? this.generateRoomCreateModal() : null}
                 </ReactCSSTransitionGroup>
             </div>
         );
