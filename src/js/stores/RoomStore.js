@@ -1,10 +1,10 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var AppConstants = require('../constants/AppConstants');
 var assign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 
-var CHANGE_EVENT = 'change';
+var AppDispatcher = require('../dispatcher/AppDispatcher');
+var AppConstants = require('../constants/AppConstants');
 
+var CHANGE_EVENT = 'change';
 var _rooms = [];
 
 var setRooms = function(fetchedRooms){

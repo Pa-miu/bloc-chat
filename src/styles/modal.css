@@ -29,29 +29,6 @@
     transition: opacity 0.2s ease-in;
 }
 
-.modal-form.animate-enter {
-    opacity: 0.01;
-}
-
-.modal-form.animate-enter.animate-enter-active  {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-	-moz-transform: translateY(0);
-	transform: translateY(0);
-}
-
-.modal-form.animate-leave {
-    visibility: hidden;
-    opacity: 1;
-}
-
-.modal-form.animate-leave.animate-enter-active  {
-    opacity: 0.01;
-    -webkit-transform: translateY(3rem);
-	-moz-transform: translateY(3rem);
-	transform: translateY(3rem);
-}
-
 .modal-dialog .modal-dim{
     height: 100%;
     width: 100%;
@@ -72,9 +49,28 @@
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
+}
+
+.modal-form.animate-enter {
+    opacity: 0.01;
+}
+
+.modal-form.animate-enter.animate-enter-active  {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.modal-form.animate-leave {
+    opacity: 1;
+}
+
+.modal-form.animate-leave.animate-enter-active  {
+    opacity: 0.01;
+    -webkit-transform: translateY(3rem);
+	-moz-transform: translateY(3rem);
+	transform: translateY(3rem);
 }
 
 .modal-dialog .modal-form .modal-header {
@@ -84,19 +80,19 @@
     background-color: rgb(69, 143, 163);
 }
 
-.modal-dialog .modal-body {
+.modal-dialog .modal-form .modal-body {
     padding: 1rem;
 }
 
-.modal-dialog .modal-body p {
+.modal-dialog .modal-form .modal-body p {
     margin: 0;
 }
 
-.modal-dialog .modal-body .modal-entry-group {
+.modal-dialog .modal-form .modal-body .modal-entry-group {
     margin-top: 1rem;
 }
 
-.modal-dialog .modal-label {
+.modal-dialog .modal-form .modal-label {
     display: inline-block;
     padding-right: 1rem;
     width: 7rem;
@@ -104,14 +100,14 @@
     font-weight: 600;
 }
 
-.modal-dialog .modal-input {
+.modal-dialog .modal-form .modal-input {
     padding: 0.5rem;
     width: 18rem; 
     border: 1px solid rgb(159, 159, 159);
     background-color: rgb(240, 240, 240);
 }
 
-.modal-dialog .modal-footer {
+.modal-dialog .modal-form .modal-footer {
     position: absolute;
     bottom: 0;
     height: 3rem;
@@ -119,7 +115,7 @@
     text-align: center;
 }
 
-.modal-dialog .modal-footer .modal-button {
+.modal-dialog .modal-form .modal-footer .modal-button {
     display: inline-block;
     margin: 0 0.5rem;
     height: 2rem;

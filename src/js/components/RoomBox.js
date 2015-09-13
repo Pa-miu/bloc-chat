@@ -1,4 +1,5 @@
 var React = require('React');
+
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
 var RoomStore = require('../stores/RoomStore');

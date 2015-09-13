@@ -1,4 +1,6 @@
 var React = require('React');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var RoomActions = require('../actions/RoomActions');
 
 var CreateRoomModal = React.createClass({

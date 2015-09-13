@@ -1,4 +1,5 @@
 var Firebase = require('firebase');
+
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var ServerActions = require('../actions/ServerActions');
