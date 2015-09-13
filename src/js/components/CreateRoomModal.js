@@ -34,7 +34,7 @@ var CreateRoomModal = React.createClass({
                         <p>Create a public room on the server every user can see and join.</p>
                         <div className="modal-entry-group">
                             <label className="modal-label" for="room-name-input">Name</label>
-                            <input className="modal-input" id="room-name-input" ref="roomNameInput"/>
+                            <input className="modal-input" id="room-name-input" ref="roomNameInput" maxLength="20"/>
                         </div>
                     </div>
                     <div className="modal-footer">

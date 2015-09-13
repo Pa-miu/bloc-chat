@@ -55,6 +55,9 @@
 
 .room-box .room-node{
     padding: 0.3rem 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .room-box .room-node:hover{
