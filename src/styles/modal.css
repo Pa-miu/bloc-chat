@@ -9,33 +9,47 @@
     cursor: default;
 }
 
-.animate-enter {
+.modal-dialog.animate-enter {
     opacity: 0.01;
 }
 
-.animate-enter.toggle-enter-active {
+.modal-dialog.animate-enter.animate-enter-active {
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
 }
 
-/*
-.animate-leave {
+.modal-dialog.animate-leave {
     opacity: 1;
 }
 
-.animate-leave.toggle-leave-active {
+.modal-dialog.animate-leave.animate-leave-active {
     opacity: 0.01;
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
 }
-*/
 
-.modal-dialog:target > .modal-form {
+.modal-form.animate-enter {
+    opacity: 0.01;
+}
+
+.modal-form.animate-enter.animate-enter-active  {
     opacity: 1;
     -webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	transform: translateY(0);
+}
+
+.modal-form.animate-leave {
+    visibility: hidden;
+    opacity: 1;
+}
+
+.modal-form.animate-leave.animate-enter-active  {
+    opacity: 0.01;
+    -webkit-transform: translateY(3rem);
+	-moz-transform: translateY(3rem);
+	transform: translateY(3rem);
 }
 
 .modal-dialog .modal-dim{

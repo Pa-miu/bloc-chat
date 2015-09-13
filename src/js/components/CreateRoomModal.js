@@ -30,7 +30,7 @@ var CreateRoomModal = React.createClass({
     
     render : function(){
         return (
-            <div className="modal-dialog" key={this.props.key} onKeyDown={this.handleKeyDown}>
+            <div className="modal-dialog" onKeyDown={this.handleKeyDown}>
                 <div onClick={this.handleToggle} className="modal-dim"></div>
                 <form className="modal-form">
                     <div className="modal-header no-select">

@@ -17,13 +17,10 @@ var ChatController = React.createClass({
         this.setState({roomModal : !this.state.roomModal});
     },
     
-    createRoomModalGroup : function(modalOn) {
+    generateRoomCreateModal : function(modalOn) {
         if (modalOn) {
-            var key = modalOn ? "ON" : "OFF";
             return (
-                <ReactCSSTransitionGroup transitionName="animate">
-                    <CreateRoomModal key={key} toggle={this.handleRoomCreateToggle}/>
-                </ReactCSSTransitionGroup>
+                <CreateRoomModal toggle={this.handleRoomCreateToggle}/>
             )
         }
         else {
@@ -32,21 +29,14 @@ var ChatController = React.createClass({
     },
     
     render : function() {
-        var roomModalGroup = this.createRoomModalGroup(this.state.roomModal);
-        /*
+        var roomModal = this.generateRoomCreateModal(this.state.roomModal);
         return (
             <div>   
                 <RoomBox toggle={this.handleRoomCreateToggle}/>
                 <MessageBox/>
-                {this.state.roomModal ? <CreateRoomModal toggle={this.handleRoomCreateToggle}/> : ''}
-            </div>
-        );
-        */
-        return (
-            <div>   
-                <RoomBox toggle={this.handleRoomCreateToggle}/>
-                <MessageBox/>
-                {roomModalGroup}
+                <ReactCSSTransitionGroup transitionName="animate">
+                    {roomModal}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
