@@ -45,7 +45,7 @@
 .room-box .create-room-wrapper .create-room-button{
     align-self: center;
     font-size: 1.5rem;
-     -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
+    -webkit-transition: -webkit-transform 0.1s ease-in-out, color 0.1s ease-in-out;
     transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
