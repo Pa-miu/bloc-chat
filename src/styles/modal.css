@@ -99,14 +99,14 @@
 .modal-dialog .modal-label {
     display: inline-block;
     padding-right: 1rem;
-    width: 5rem;
+    width: 7rem;
     text-align: right;
     font-weight: 600;
 }
 
 .modal-dialog .modal-input {
     padding: 0.5rem;
-    width: 22rem; 
+    width: 18rem; 
     border: 1px solid rgb(159, 159, 159);
     background-color: rgb(240, 240, 240);
 }
