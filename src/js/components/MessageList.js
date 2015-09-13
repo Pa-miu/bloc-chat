@@ -6,7 +6,7 @@ var MessageList = React.createClass({
     objectToMessage : function(object) {
         var newMessage;
         if(object.hasOwnProperty('sender')){
-            var newMessage = (
+            newMessage = (
                 <MessageInstance
                     key={object.id}
                     iconURL={object.iconURL}
@@ -17,7 +17,7 @@ var MessageList = React.createClass({
             );
         }
         else if (object.hasOwnProperty('date')){
-            var newMessage = (
+            newMessage = (
                 <DateDivider key={object.id} date={object.date}/>
             );
         }

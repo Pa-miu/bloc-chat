@@ -24,8 +24,12 @@ var RoomBox = React.createClass({
         })
     },
     
+    objectToRoom : function(object) {
+        return <RoomNode key={object.name} name={object.name}/>
+    },
+    
     render : function () {
-        var roomNodes = this.state.rooms.map(RoomNode.fromObject);
+        var roomNodes = this.state.rooms.map(this.objectToRoom);
         return (
             <div className="room-box no-select">
                 <RoomHeader title="Open Rooms" toggle={this.props.toggle}/>
