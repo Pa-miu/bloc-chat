@@ -1,7 +1,6 @@
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
 var RoomStore = require('../stores/RoomStore');
-var RoomActions = require('../actions/RoomActions');
 
 var RoomBox = React.createClass({
     getInitialState : function() {
@@ -18,14 +17,6 @@ var RoomBox = React.createClass({
         RoomStore.removeChangeListener(this._onChange);
     },
     
-    handleCreateRoom : function(room){
-        RoomActions.createRoom(room);
-    },
-    
-    handleDeleteRoom : function(room){
-        RoomActions.deleteRoom(room);
-    },
-    
     _onChange : function() {
         this.setState({
             rooms : RoomStore.getRooms()
@@ -36,7 +27,7 @@ var RoomBox = React.createClass({
         var roomNodes = this.state.rooms.map(RoomNode.fromObject);
         return (
             <div className="room-box noSelect">
-                <RoomHeader title="Open Rooms" create={this.handleCreateRoom} modalTarget={this.props.modalTarget}/>
+                <RoomHeader title="Open Rooms" modalTarget={this.props.modalTarget}/>
                 {roomNodes}
             </div>
         );

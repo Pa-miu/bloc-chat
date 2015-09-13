@@ -1,11 +1,4 @@
 var RoomHeader = React.createClass({
-    _onClick : function() {
-        var newRoom = {
-            name : "Room 1",
-        };
-        this.props.create(newRoom);
-    },
-    
     render : function () {
         return(
             <div className="room-box-header">
