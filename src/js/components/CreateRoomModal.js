@@ -22,8 +22,8 @@ var CreateRoomModal = React.createClass({
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <a href="#"><div className="modal-button red">Cancel</div></a>
-                        <div className="modal-button green" onClick={this._handleSubmit}>Submit</div>
+                        <a href="#"><div className="modal-button red no-select">Cancel</div></a>
+                        <div className="modal-button green no-select" onClick={this._handleSubmit}>Submit</div>
                     </div>
                 </form>
             </div>

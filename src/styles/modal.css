@@ -1,25 +1,35 @@
 .modal-dialog {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     color: black;
-    pointer-events: none;
     z-index: 9999;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    pointer-events: none;
+    cursor: default;
 }
 
 .modal-dialog:target {
-    display: block;
     opacity: 1;
     pointer-events: auto;
+}
+
+.modal-dialog:target > .modal-form {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	transform: translateY(0);
 }
 
 .modal-dialog .modal-dim{
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
+    cursor: default;
 }
 
 .modal-dialog .modal-form {
@@ -30,19 +40,26 @@
     width: 30rem;
     margin-left: -15rem;
     padding-bottom: 3rem;
-    background-color: white;
+    background-color: rgb(240, 240, 240);
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    -webkit-transform: translateY(3rem);
+	-moz-transform: translateY(3rem);
+	transform: translateY(3rem);
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .modal-dialog .modal-form .modal-header {
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    background-color: rgb(239, 248, 248);
+    color: white;
+    background-color: rgb(69, 143, 163);
 }
 
 .modal-dialog .modal-body {
     padding: 1rem;
-    font-size: 0.8rem;
 }
 
 .modal-dialog .modal-body p {
@@ -64,6 +81,8 @@
 .modal-dialog .modal-input {
     padding: 0.5rem;
     width: 22rem; 
+    border: 1px solid rgb(159, 159, 159);
+    background-color: rgb(240, 240, 240);
 }
 
 .modal-dialog .modal-footer {
@@ -91,21 +110,21 @@
 }
 
 .modal-button.red {
-    color: rgb(255, 104, 104);
-    border-color: rgb(255, 104, 104);
+    color: rgb(222, 61, 61);
+    border-color: rgb(222, 61, 61);
 }
 
 .modal-button.red:active {
     color: white;
-    background-color: rgb(255, 104, 104);
+    background-color: rgb(222, 61, 61);
 }
 
 .modal-button.green {
-    color: rgb(104, 255, 139);
-    border-color: rgb(104, 255, 139);
+    color: rgb(24, 178, 60);
+    border-color: rgb(24, 178, 60);
 }
 
 .modal-button.green:active {
     color: white;
-    background-color: rgb(104, 255, 139)
+    background-color: rgb(24, 178, 60);
 }
