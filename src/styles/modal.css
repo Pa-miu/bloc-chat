@@ -1,16 +1,19 @@
 .modal-dialog {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     color: black;
+    pointer-events: none;
     z-index: 9999;
 }
 
 .modal-dialog:target {
     display: block;
     opacity: 1;
+    pointer-events: auto;
 }
 
 .modal-dialog .modal-dim{

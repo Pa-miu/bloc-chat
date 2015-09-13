@@ -1,8 +1,4 @@
 var CreateRoomModal = React.createClass({
-    _handleClose : function() {
-        this.props.close(this);
-    },
-    
     _handleSubmit : function() {
         var newRoom = {
             name : ""
@@ -12,8 +8,8 @@ var CreateRoomModal = React.createClass({
     
     render : function(){
         return (
-            <div className="modal-dialog">
-                <div className="modal-dim" onClick={this._handleClose}></div>
+            <div className="modal-dialog" id={this.props.modalID}>
+                <a href="#"><div className="modal-dim"></div></a>
                 <form className="modal-form">
                     <div className="modal-header">
                         Create a New Room
@@ -26,7 +22,7 @@ var CreateRoomModal = React.createClass({
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <div className="modal-button red" onClick={this._handleClose}>Cancel</div>
+                        <a href="#"><div className="modal-button red">Cancel</div></a>
                         <div className="modal-button green" onClick={this._handleSubmit}>Submit</div>
                     </div>
                 </form>

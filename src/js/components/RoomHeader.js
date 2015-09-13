@@ -11,7 +11,10 @@ var RoomHeader = React.createClass({
             <div className="room-box-header">
                 <div className="room-box-title">{this.props.title}</div>
                 <div className="create-room-wrapper">
-                     <div className="ion-plus-circled create-room-button room-hover" onClick={this._onClick}></div>
+                    <a
+                        className="ion-plus-circled create-room-button room-hover" 
+                        href={'#' + this.props.modalTarget}>
+                    </a>
                 </div>
             </div>
         )
