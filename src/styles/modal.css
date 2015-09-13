@@ -6,17 +6,30 @@
     width: 100%;
     color: black;
     z-index: 9999;
-    opacity: 0;
-    -webkit-transition: opacity 0.2s ease-in;
-    transition: opacity 0.2s ease-in;
-    pointer-events: none;
     cursor: default;
 }
 
-.modal-dialog:target {
-    opacity: 1;
-    pointer-events: auto;
+.animate-enter {
+    opacity: 0.01;
 }
+
+.animate-enter.toggle-enter-active {
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+}
+
+/*
+.animate-leave {
+    opacity: 1;
+}
+
+.animate-leave.toggle-leave-active {
+    opacity: 0.01;
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+}
+*/
 
 .modal-dialog:target > .modal-form {
     opacity: 1;
@@ -42,7 +55,6 @@
     padding-bottom: 3rem;
     background-color: rgb(240, 240, 240);
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
-    opacity: 0;
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);

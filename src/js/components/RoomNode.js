@@ -11,7 +11,7 @@ var RoomNode = React.createClass({
 });
 
 RoomNode.fromObject = function(object){
-    return <RoomNode name={object.name}/>
+    return <RoomNode key={object.id} name={object.name}/>
 }
 
 module.exports = RoomNode;

@@ -1,8 +1,17 @@
 var React = require('React');
 var RoomActions = require('../actions/RoomActions');
 
-var CreateRoomModal = React.createClass({    
-    handleKey : function(event) {
+var CreateRoomModal = React.createClass({
+    resetInput : function() {
+        React.findDOMNode(this.refs.roomNameInput).value = '';
+    },
+    
+    handleToggle : function() {
+        this.resetInput();
+        this.props.toggle();
+    },
+    
+    handleKeyDown : function(event) {
         if (event.keyCode == 13) {
             this.handleSubmit(); 
         }
@@ -16,30 +25,26 @@ var CreateRoomModal = React.createClass({
             };
             RoomActions.createRoom(room);
         }
-        this.resetInput();
-    },
-    
-    resetInput : function() {
-        React.findDOMNode(this.refs.roomNameInput).value = '';
+        this.handleToggle();
     },
     
     render : function(){
         return (
-            <div className="modal-dialog" id={this.props.modalID} onKeyDown={this.handleKey}>
-                <a href="#" onClick={this.resetInput}><div className="modal-dim"></div></a>
+            <div className="modal-dialog" key={this.props.key} onKeyDown={this.handleKeyDown}>
+                <div onClick={this.handleToggle} className="modal-dim"></div>
                 <form className="modal-form">
-                    <div className="modal-header">
+                    <div className="modal-header no-select">
                         Create a New Room
                     </div>
                     <div className="modal-body">
                         <p>Create a public room on the server every user can see and join.</p>
                         <div className="modal-entry-group">
-                            <label className="modal-label" for="room-name-input">Name</label>
-                            <input className="modal-input" id="room-name-input" ref="roomNameInput" maxLength="20"/>
+                            <label className="modal-label no-select">Name</label>
+                            <input className="modal-input" ref="roomNameInput" maxLength="20"/>
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <a href="#" onClick={this.resetInput}><div className="modal-button red no-select">Cancel</div></a>
+                        <div className="modal-button red no-select" onClick={this.handleToggle}>Cancel</div>
                         <div className="modal-button green no-select" onClick={this.handleSubmit}>Submit</div>
                     </div>
                 </form>

@@ -27,8 +27,8 @@ var RoomBox = React.createClass({
     render : function () {
         var roomNodes = this.state.rooms.map(RoomNode.fromObject);
         return (
-            <div className="room-box noSelect">
-                <RoomHeader title="Open Rooms" modalTarget={this.props.modalTarget}/>
+            <div className="room-box no-select">
+                <RoomHeader title="Open Rooms" toggle={this.props.toggle}/>
                 {roomNodes}
             </div>
         );
