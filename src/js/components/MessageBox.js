@@ -27,6 +27,7 @@ var MessageBox = React.createClass({
     
     _onChange : function() {
         this.setState({
+            currentRoom : MessageStore.getCurrentRoom(),
             messages : MessageStore.getMessages()
         })
     },
