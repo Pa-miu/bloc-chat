@@ -22,19 +22,27 @@ var ChatAPI = {
             }
         );
     },
+    
     createRoom : function(room){
-        var key = room.name.toLowerCase();
+        var name = room.name.toLowerCase();
         
-        firebaseRef.child(paths.rooms + key).once('value', 
+        firebaseRef.child(paths.rooms + name).once('value', 
             function(data) {
                 if (!data.exists()) {
-                    firebaseRef.child(paths.rooms + key).set(room);
+                    firebaseRef.child(paths.rooms + name).set(room);
                 }
             }   
         );
     },
-    deleteRoom : function(room){
-        console.log("I don't do anything useful yet.");
+    
+    deleteRoom : function(name){
+        firebaseRef.child(paths.rooms + name).once('value',
+            function(data) {
+                if (data.exists()) {
+                    firebaseRef.child(paths.rooms + name).set(null);
+                }
+            }  
+        );
     }
 };
 
