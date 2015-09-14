@@ -2,6 +2,7 @@ var React = require('React');
 
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
+var RoomActions = require('../actions/RoomActions');
 var RoomStore = require('../stores/RoomStore');
 
 var RoomBox = React.createClass({
@@ -25,8 +26,12 @@ var RoomBox = React.createClass({
         })
     },
     
+    handleRoomDelete : function(name) {
+        RoomActions.deleteRoom(name);
+    },
+    
     objectToRoom : function(object) {
-        return <RoomNode key={object.name} name={object.name}/>
+        return <RoomNode key={object.name} name={object.name} deleteRoom={this.handleRoomDelete}/>
     },
     
     render : function () {
