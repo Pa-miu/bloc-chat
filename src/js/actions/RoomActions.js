@@ -6,6 +6,7 @@ var RoomActions = {
     createRoom : function(room) {
         ChatAPI.createRoom(room);
     },
+    
     deleteRoom : function(name) {
         ChatAPI.deleteRoom(name);
     }
