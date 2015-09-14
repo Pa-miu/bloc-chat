@@ -15,7 +15,7 @@ var ChatAPI = {
     getRooms : function(){
         firebaseRef.child(paths.rooms).on('value', 
             function(data) {
-                ServerActions.roomFetched(data.val());
+                ServerActions.roomsFetched(data.val());
             },
             function(error) {
                 console.log('ChatAPI.getRoom() encountered an error: ' + error.getCode());
@@ -43,7 +43,18 @@ var ChatAPI = {
                 }
             }  
         );
-    }
+    },
+    
+    getMessages : function(currentRoom){
+        firebaseRef.child(paths.messages + currentRoom).once('value', 
+            function(data) {
+                ServerActions.messagesFetched(data.val());
+            },
+            function(error) {
+                console.log('ChatAPI.getMessages() encountered an error: ' + error.getCode());
+            }
+        );
+    },
 };
 
 module.exports = ChatAPI;
