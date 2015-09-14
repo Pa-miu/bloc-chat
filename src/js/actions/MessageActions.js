@@ -3,8 +3,8 @@ var AppConstants = require('../constants/AppConstants');
 var ChatAPI = require('../api/ChatAPI');
 
 var MessageActions = {
-    fetchRoomMessages : function(name) {
-        ChatAPI.getMessages(name);
+    fetchRoomMessages : function(roomName) {
+        ChatAPI.getMessages(roomName);
     }
 };
 
