@@ -1,4 +1,4 @@
-var React = require('React/addons');
+var React = require('React');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var RoomBox = require('./RoomBox');
