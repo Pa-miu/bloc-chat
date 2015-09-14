@@ -1,4 +1,4 @@
-var React = require('React');
+var React = require('react');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var RoomActions = require('../actions/RoomActions');
