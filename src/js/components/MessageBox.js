@@ -35,13 +35,31 @@ var MessageBox = React.createClass({
         })
     },
     
+    handleSubmitMessage : function(messageText) {
+        var username = 'dummySender';
+        var userIcon = '';
+        var messageTime = new Date().toUTCString(); 
+        var messageObject = {
+            sender : username,
+            iconURL : userIcon,
+            timestamp : messageTime,
+            content : messageText
+        };
+        var messagePayload = {
+            room : defaultRoom,
+            message : messageObject
+        };
+            
+        MessageActions.sendMessage(messagePayload);
+    },
+    
     objectToMessage : function(object) {
-        var messageDate = new Date(object.timestamp);
+        var utcTime = new Date(object.timestamp);
         var options = {hour12 : false, hour : '2-digit', minute : '2-digit'}
-        var truncateTime = messageDate.toLocaleTimeString(undefined, options);
+        var truncateTime = utcTime.toLocaleTimeString(undefined, options);
         var newMessage = (
             <MessageInstance
-                key={object.sender + messageDate.toString()}
+                key={object.id}
                 sender={object.sender}
                 iconURL={object.iconURL}
                 timestamp={truncateTime}
@@ -52,12 +70,11 @@ var MessageBox = React.createClass({
     },
     
     render : function () {
-        var messages = this.state.messages.map(this.objectToMessage)
         return (
             <div className="message-box message-sidebar-offset">
                 <MessageHeader roomname={this.state.currentRoom}/>
-                <MessageList messages={messages}/>
-                <MessageForm/>
+                <MessageList messages={this.state.messages.map(this.objectToMessage)}/>
+                <MessageForm submit={this.handleSubmitMessage}/>
             </div>
         );
     }

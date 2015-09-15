@@ -9,16 +9,9 @@ var ServerActions = {
         });
     },
     
-    roomMessagesFetched : function(json) {
+    messageFetched : function(json) {
         AppDispatcher.handleAction({
-            type : AppConstants.ROOM_MESSAGES_FETCHED,
-            data : json
-        });
-    },
-    
-    newMessageFetched : function(json) {
-        AppDispatcher.handleAction({
-            type : AppConstants.NEW_MESSAGE_FETCHED,
+            type : AppConstants.MESSAGE_FETCHED,
             data : json
         });
     },

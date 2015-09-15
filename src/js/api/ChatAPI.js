@@ -42,17 +42,30 @@ var ChatAPI = {
         );
     },
     
-    getMessages : function(roomName){
-        firebaseRef.child(paths.messages + roomName).once('value', 
+    sendMessage : function(messagePayload) {
+        firebaseRef.child(paths.messages + messagePayload.room).once('value', 
             function(data) {
-                var payload = {room : data.key(), messages : data.val()};
-                ServerActions.roomMessagesFetched(payload);
+                firebaseRef.child(paths.messages + messagePayload.room).push(messagePayload.message);
+            },
+            function(error) {
+                console.log('ChatAPI.sentMessage() encountered an error: ' + error.getCode());
+            }
+        );
+    },
+    
+    getMessages : function(roomName){
+        firebaseRef.child(paths.messages + roomName).on('child_added', 
+            function(data) {
+                var payload = {room : roomName, id : data.key(), message : data.val()};
+                ServerActions.messageFetched(payload);
             },
             function(error) {
                 console.log('ChatAPI.getMessages() encountered an error: ' + error.getCode());
             }
         );
     },
+    
+    
 };
 
 module.exports = ChatAPI;

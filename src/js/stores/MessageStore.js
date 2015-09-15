@@ -16,14 +16,8 @@ var setCurrentRoom = function(roomName) {
     _currentRoom = roomName;
 }
 
-var setMessages = function(fetchedMessages) {
-    _messages.splice(0, _messages.length);
-    for (var key in fetchedMessages) {
-        _messages.push(fetchedMessages[key]);
-    }
-}
-
-var addMessage = function(newMessage) {
+var addMessage = function(newID, newMessage) {
+    newMessage['id'] = newID;
     _messages.push(newMessage);
 }
 
@@ -49,13 +43,9 @@ var MessageStore = assign({}, EventEmitter.prototype, {
 /* Registration */
 AppDispatcher.register(function(action) {
     switch(action.type) {
-        case AppConstants.ROOM_MESSAGES_FETCHED:
+        case AppConstants.MESSAGE_FETCHED:
             setCurrentRoom(action.data.room);
-            setMessages(action.data.messages);
-            MessageStore.emit(CHANGE_EVENT);
-            break;
-        case AppConstants.NEW_MESSAGE_FETCHED:
-            addMessage(action.data);
+            addMessage(action.data.id, action.data.message);
             MessageStore.emit(CHANGE_EVENT);
             break;
         default:
