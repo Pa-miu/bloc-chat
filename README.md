@@ -13,7 +13,7 @@
     2. Room
         a. List
             - [ ] Splash page to introduce interface on new session
-            - [ ] Join any room by clicking on it
+            - [x] Join any room by clicking on it
         b. Create
             - [x] Create a new room on the server with a modal form
             - [ ] Room creator assumes ownership of the room
