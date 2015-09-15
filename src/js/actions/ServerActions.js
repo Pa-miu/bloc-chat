@@ -2,16 +2,16 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
 var ServerActions = {
-    roomsFetched : function(json) { 
+    roomListFetched : function(json) { 
         AppDispatcher.handleAction({
-            type : AppConstants.ROOMS_FETCHED,
+            type : AppConstants.ROOM_LIST_FETCHED,
             data : json
         });
     },
     
-    messagesFetched : function(json) {
+    roomMessagesFetched : function(json) {
         AppDispatcher.handleAction({
-            type : AppConstants.MESSAGES_FETCHED,
+            type : AppConstants.ROOM_MESSAGES_FETCHED,
             data : json
         });
     },

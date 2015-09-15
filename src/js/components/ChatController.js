@@ -5,8 +5,6 @@ var RoomBox = require('./RoomBox');
 var MessageBox = require('./MessageBox');
 var CreateRoomModal = require('./CreateRoomModal');
 
-var createRoomID = 'create-room';
-
 var ChatController = React.createClass({
     getInitialState : function() {
         return({

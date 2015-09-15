@@ -40,10 +40,10 @@ var CreateRoomModal = React.createClass({
     handleSubmit : function() {
         var value = React.findDOMNode(this.refs.roomNameInput).value;
         if (value.length > 0) {
-            var room = {
+            var newRoom = {
                 name : value
             };
-            RoomActions.createRoom(room);
+            RoomActions.createRoom(newRoom);
         }
         this.handleToggle();
     },
@@ -58,7 +58,7 @@ var CreateRoomModal = React.createClass({
                     <p>Create a public room on the server every user can see and join.</p>
                     <div className="modal-entry-group">
                         <label className="modal-label no-select">Name</label>
-                        <input className="modal-input" ref="roomNameInput" maxLength="20"/>
+                        <input className="modal-input" ref="roomNameInput" maxLength="20" autoFocus/>
                     </div>
                 </div>
                 <div className="modal-footer">

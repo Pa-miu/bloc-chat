@@ -4,9 +4,13 @@ var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
+/* Constants */
 var CHANGE_EVENT = 'change';
+
+/* Data */
 var _rooms = [];
 
+/* Mutators */
 var setRooms = function(fetchedRooms){
     _rooms.splice(0, _rooms.length);
     for (var key in fetchedRooms) {
@@ -14,6 +18,7 @@ var setRooms = function(fetchedRooms){
     }
 }
 
+/* Store */
 var RoomStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
         this.on(CHANGE_EVENT, callback);
@@ -28,9 +33,10 @@ var RoomStore = assign({}, EventEmitter.prototype, {
     }
 });
 
+/* Registration */
 AppDispatcher.register(function(action) {
     switch(action.type) {
-        case AppConstants.ROOMS_FETCHED:
+        case AppConstants.ROOM_LIST_FETCHED:
             setRooms(action.data);
             RoomStore.emit(CHANGE_EVENT);
             break;

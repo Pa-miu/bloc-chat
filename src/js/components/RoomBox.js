@@ -26,12 +26,21 @@ var RoomBox = React.createClass({
         })
     },
     
-    handleRoomDelete : function(name) {
-        RoomActions.deleteRoom(name);
+    handleChangeRoom : function(roomName) {
+        RoomActions.changeRoom(roomName);
+    },
+    
+    handleDeleteRoom : function(roomName) {
+        RoomActions.deleteRoom(roomName);
     },
     
     objectToRoom : function(object) {
-        return <RoomNode key={object.name} name={object.name} deleteRoom={this.handleRoomDelete}/>
+        return <RoomNode 
+                    key={object.name} 
+                    name={object.name} 
+                    changeRoom={this.handleChangeRoom} 
+                    deleteRoom={this.handleDeleteRoom}
+                />
     },
     
     render : function () {

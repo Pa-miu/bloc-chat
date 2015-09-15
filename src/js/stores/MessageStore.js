@@ -4,10 +4,17 @@ var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
+/* Constants */
 var CHANGE_EVENT = 'change';
 
-var _currentRoom = 'dummy';
+/* Data */
+var _currentRoom = '';
 var _messages = [];
+
+/* Mutators */
+var setCurrentRoom = function(roomName) {
+    _currentRoom = roomName;
+}
 
 var setMessages = function(fetchedMessages) {
     _messages.splice(0, _messages.length);
@@ -20,6 +27,7 @@ var addMessage = function(newMessage) {
     _messages.push(newMessage);
 }
 
+/* Store */
 var MessageStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
         this.on(CHANGE_EVENT, callback);
@@ -38,15 +46,18 @@ var MessageStore = assign({}, EventEmitter.prototype, {
     }
 });
 
+/* Registration */
 AppDispatcher.register(function(action) {
     switch(action.type) {
-        case AppConstants.MESSAGES_FETCHED:
-            setMessages(action.data);
+        case AppConstants.ROOM_MESSAGES_FETCHED:
+            setCurrentRoom(action.data.room);
+            setMessages(action.data.messages);
             MessageStore.emit(CHANGE_EVENT);
             break;
         case AppConstants.NEW_MESSAGE_FETCHED:
             addMessage(action.data);
             MessageStore.emit(CHANGE_EVENT);
+            break;
         default:
             return true;
     }

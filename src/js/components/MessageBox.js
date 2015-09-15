@@ -7,6 +7,9 @@ var DateDivider = require('./DateDivider');
 var MessageForm = require('./MessageForm');
 var MessageStore = require('../stores/MessageStore');
 var MessageActions = require('../actions/MessageActions');
+var RoomActions = require('../actions/RoomActions');
+
+var defaultRoom = 'dummy';
 
 var MessageBox = React.createClass({
     getInitialState : function() {
@@ -18,7 +21,7 @@ var MessageBox = React.createClass({
     
     componentDidMount : function(){
         MessageStore.addChangeListener(this._onChange);
-        MessageActions.fetchRoomMessages(this.state.currentRoom);
+        RoomActions.changeRoom(defaultRoom);
     },
     
     componentWillUnmount : function(){

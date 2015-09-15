@@ -1,5 +1,4 @@
 var Firebase = require('firebase');
-
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var ServerActions = require('../actions/ServerActions');
@@ -12,17 +11,6 @@ var paths = {
 };
 
 var ChatAPI = {
-    getRooms : function(){
-        firebaseRef.child(paths.rooms).on('value', 
-            function(data) {
-                ServerActions.roomsFetched(data.val());
-            },
-            function(error) {
-                console.log('ChatAPI.getRoom() encountered an error: ' + error.getCode());
-            }
-        );
-    },
-    
     createRoom : function(room){
         var name = room.name.toLowerCase();
         
@@ -45,10 +33,22 @@ var ChatAPI = {
         );
     },
     
-    getMessages : function(currentRoom){
-        firebaseRef.child(paths.messages + currentRoom).once('value', 
+    getRoomList : function(){
+        firebaseRef.child(paths.rooms).on('value', 
             function(data) {
-                ServerActions.messagesFetched(data.val());
+                ServerActions.roomListFetched(data.val());
+            },
+            function(error) {
+                console.log('ChatAPI.getRoom() encountered an error: ' + error.getCode());
+            }
+        );
+    },
+    
+    getMessages : function(roomName){
+        firebaseRef.child(paths.messages + roomName).once('value', 
+            function(data) {
+                var payload = {room : data.key(), messages : data.val()};
+                ServerActions.roomMessagesFetched(payload);
             },
             function(error) {
                 console.log('ChatAPI.getMessages() encountered an error: ' + error.getCode());
