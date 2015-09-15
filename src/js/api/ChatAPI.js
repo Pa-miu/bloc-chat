@@ -11,9 +11,7 @@ var paths = {
 };
 
 var ChatAPI = {
-    createRoom : function(room){
-        var name = room.name.toLowerCase();
-        
+    createRoom : function(room){   
         firebaseRef.child(paths.rooms + name).once('value', 
             function(data) {
                 if (!data.exists()) {
