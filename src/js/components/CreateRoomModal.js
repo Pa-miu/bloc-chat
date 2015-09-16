@@ -33,6 +33,7 @@ var CreateRoomModal = React.createClass({
     
     handleKeyDown : function(event) {
         if (event.keyCode == 13) {
+            event.preventDefault();
             this.handleSubmit(); 
         }
     },
