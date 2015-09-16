@@ -21,6 +21,14 @@ var addMessage = function(newID, newMessage) {
     _messages.push(newMessage);
 }
 
+var removeMessage = function(removeID) {
+    for (var i = _messages.length - 1; i >= 0; --i) {
+        if (_messages[i].id === removeID) {
+            _messages.splice(i, 1);
+        }
+    }
+}
+
 /* Store */
 var MessageStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
@@ -46,6 +54,10 @@ AppDispatcher.register(function(action) {
         case AppConstants.MESSAGE_FETCHED:
             setCurrentRoom(action.data.room);
             addMessage(action.data.id, action.data.message);
+            MessageStore.emit(CHANGE_EVENT);
+            break;
+        case AppConstants.MESSAGE_REMOVED:
+            removeMessage(action.data);
             MessageStore.emit(CHANGE_EVENT);
             break;
         default:

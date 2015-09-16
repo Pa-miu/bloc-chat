@@ -32,7 +32,7 @@ var MessageBox = React.createClass({
         this.setState({
             currentRoom : MessageStore.getCurrentRoom(),
             messages : MessageStore.getMessages()
-        })
+        });
     },
     
     handleSubmitMessage : function(messageText) {
@@ -45,6 +45,7 @@ var MessageBox = React.createClass({
             timestamp : messageTime,
             content : messageText
         };
+        
         var messagePayload = {
             room : defaultRoom,
             message : messageObject

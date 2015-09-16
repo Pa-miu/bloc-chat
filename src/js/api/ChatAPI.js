@@ -60,7 +60,16 @@ var ChatAPI = {
                 ServerActions.messageFetched(payload);
             },
             function(error) {
-                console.log('ChatAPI.getMessages() encountered an error: ' + error.getCode());
+                console.log('ChatAPI.getMessages() encountered an error during fetch: ' + error.getCode());
+            }
+        );
+        
+        firebaseRef.child(paths.messages + roomName).on('child_removed', 
+            function(data) {
+                ServerActions.messageRemoved(data.key());
+            },
+            function(error) {
+                console.log('ChatAPI.getMessages() encountered an error during removal: ' + error.getCode());
             }
         );
     },

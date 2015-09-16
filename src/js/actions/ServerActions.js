@@ -15,6 +15,13 @@ var ServerActions = {
             data : json
         });
     },
+    
+    messageRemoved : function(json) {
+        AppDispatcher.handleAction({
+            type : AppConstants.MESSAGE_REMOVED,
+            data : json
+        });
+    },
 };
 
 module.exports = ServerActions;
