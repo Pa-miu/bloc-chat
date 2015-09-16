@@ -2,7 +2,7 @@ var React = require('react');
 
 var MessageForm = React.createClass({
     componentDidMount : function () {
-        document.addEventListener('keydown', this.handleKeydown);
+        document.addEventListener('keydown', this.handleKeyDown);
     },
     
     resetInput : function() {
@@ -10,6 +10,7 @@ var MessageForm = React.createClass({
     },
     
     handleKeyDown : function(event) {
+        console.log("test");
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             this.handleSubmit(); 
@@ -38,8 +39,7 @@ var MessageForm = React.createClass({
                         className="message-input no-select" 
                         ref="messageInput" 
                         onKeyDown={this.handleKeyDown}
-                        placeholder="Submit a new message..." 
-                        autoFocus>
+                        placeholder="Submit a new message...">
                     </textarea>
                 </div>
                 <div className="message-send-wrapper" onClick={this.handleSubmit}>
