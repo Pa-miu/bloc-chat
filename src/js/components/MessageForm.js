@@ -20,9 +20,14 @@ var MessageForm = React.createClass({
     handleSubmit : function() {
         var value = React.findDOMNode(this.refs.messageInput).value;
         if (value.length > 0) {
-            this.props.submit(value);
+            this.props.submit(this.stripNewlines(value));
             this.resetInput();
         }
+    },
+    
+    stripNewlines : function (string) {
+        var result = string.replace(/\s*$/g, '');
+        return result
     },
     
     render : function () {
