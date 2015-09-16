@@ -10,24 +10,46 @@ var paths = {
     members : '/members/'
 };
 
+var messagesTemplate = function (name){
+    return {
+        "0greeting" : {
+            "sender" : "server",
+            "timestamp" : new Date().toUTCString(),
+            "iconURL" : "",
+            "content" : "This is your room!"
+        }
+    }
+}
+
 var ChatAPI = {
-    createRoom : function(room){   
+    createRoom : function(newRoom){
+        var name = newRoom.name;
         firebaseRef.child(paths.rooms + name).once('value', 
             function(data) {
-                if (!data.exists()) {
-                    firebaseRef.child(paths.rooms + name).set(room);
+                if (!data.exists()){ 
+                    firebaseRef.child(paths.rooms + name).set(newRoom);
+                    firebaseRef.child(paths.messages + name).set(messagesTemplate());
+                    firebaseRef.child(paths.members + name).set(name);
                 }
-            }   
+            },
+            function(error) {
+                console.log('ChatAPI.createRoom() encountered an error: ' + error.getCode());
+            }
         );
     },
     
-    deleteRoom : function(name){
-        firebaseRef.child(paths.rooms + name).once('value',
+    deleteRoom : function(roomName){
+        firebaseRef.child(paths.rooms + roomName).once('value',
             function(data) {
-                if (data.exists()) {
-                    firebaseRef.child(paths.rooms + name).set(null);
+                if (data.exists()){ 
+                    firebaseRef.child(paths.rooms + roomName).set(null); 
+                    firebaseRef.child(paths.messages + roomName).set(null);
+                    firebaseRef.child(paths.members + roomName).set(null);
                 }
-            }  
+            },
+            function(error) {
+                console.log('ChatAPI.deleteRoom() encountered an error: ' + error.getCode());
+            }
         );
     },
     
