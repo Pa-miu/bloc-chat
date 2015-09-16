@@ -1,6 +1,10 @@
 var React = require('react');
 
 var MessageForm = React.createClass({
+    componentDidMount : function () {
+        document.addEventListener('keydown', this.handleKeydown);
+    },
+    
     resetInput : function() {
         React.findDOMNode(this.refs.messageInput).value = '';
     },
@@ -10,6 +14,7 @@ var MessageForm = React.createClass({
             event.preventDefault();
             this.handleSubmit(); 
         }
+        React.findDOMNode(this.refs.messageInput).focus();
     },
     
     handleSubmit : function() {
