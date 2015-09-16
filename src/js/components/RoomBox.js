@@ -4,30 +4,37 @@ var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
 var RoomActions = require('../actions/RoomActions');
 var RoomStore = require('../stores/RoomStore');
+var MessageStore = require('../stores/MessageStore');
 
 var RoomBox = React.createClass({
     getInitialState : function() {
         return {
-            rooms : RoomStore.getRooms()
+            rooms : RoomStore.getRooms(),
+            currentRoom : MessageStore.getCurrentRoom()
         }
     },
     
     componentDidMount : function(){
         RoomStore.addChangeListener(this._onChange);
+        MessageStore.addChangeListener(this._onChange);
     },
     
     componentWillUnmount : function(){
         RoomStore.removeChangeListener(this._onChange);
+        MessageStore.removeChangeListener(this._onChange);
     },
     
     _onChange : function() {
         this.setState({
-            rooms : RoomStore.getRooms()
+            rooms : RoomStore.getRooms(),
+            currentRoom : MessageStore.getCurrentRoom()
         })
     },
     
     handleChangeRoom : function(roomName) {
-        RoomActions.changeRoom(roomName);
+        if (roomName != this.state.currentRoom) {
+            RoomActions.changeRoom(roomName);
+        }
     },
     
     handleDeleteRoom : function(roomName) {
