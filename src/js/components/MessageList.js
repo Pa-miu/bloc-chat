@@ -1,6 +1,6 @@
 var React = require('react');
 
-var SCROLL_ZONE = 100;
+var SCROLL_ZONE = 50;
 
 var MessageList = React.createClass({  
     componentDidMount : function () {
