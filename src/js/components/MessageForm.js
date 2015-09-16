@@ -10,7 +10,6 @@ var MessageForm = React.createClass({
     },
     
     handleKeyDown : function(event) {
-        console.log("test");
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             this.handleSubmit(); 
