@@ -13,6 +13,9 @@ var _messages = [];
 
 /* Mutators */
 var setCurrentRoom = function(roomName) {
+    if (roomName != _currentRoom) {
+        _messages = [];
+    }
     _currentRoom = roomName;
 }
 
