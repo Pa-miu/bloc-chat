@@ -1,8 +1,11 @@
 var Firebase = require('firebase');
+
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
-var ServerActions = require('../actions/ServerActions');
 
+var ServerActions = require('../actions/ServerActions');
+var UserActions = require('../actions/ServerActions');
+    
 var firebaseRef = new Firebase('https://kusera-bloc-chat.firebaseio.com');
 var paths = {
     rooms : '/rooms/',
@@ -13,7 +16,7 @@ var paths = {
 var messagesTemplate = function (name){
     return {
         "0greeting" : {
-            "sender" : "server",
+            "sender" : "Server",
             "timestamp" : new Date().toUTCString(),
             "iconURL" : "",
             "content" : "This is your room!"
@@ -29,7 +32,6 @@ var ChatAPI = {
                 if (!data.exists()){ 
                     firebaseRef.child(paths.rooms + name).set(newRoom);
                     firebaseRef.child(paths.messages + name).set(messagesTemplate());
-                    firebaseRef.child(paths.members + name).set(name);
                 }
             },
             function(error) {
@@ -44,13 +46,19 @@ var ChatAPI = {
                 if (data.exists()){ 
                     firebaseRef.child(paths.rooms + roomName).set(null); 
                     firebaseRef.child(paths.messages + roomName).set(null);
-                    firebaseRef.child(paths.members + roomName).set(null);
                 }
             },
             function(error) {
                 console.log('ChatAPI.deleteRoom() encountered an error: ' + error.getCode());
             }
         );
+    },
+    
+    setUser : function(newUser) {
+        ServerActions.userFetched(newUser);
+    },
+    
+    getUser : function() {
     },
     
     getRoomList : function(){
@@ -95,8 +103,6 @@ var ChatAPI = {
             }
         );
     },
-    
-    
 };
 
 module.exports = ChatAPI;
