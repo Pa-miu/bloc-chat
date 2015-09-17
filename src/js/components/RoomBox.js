@@ -2,32 +2,38 @@ var React = require('react');
 
 var RoomHeader = require('./RoomHeader');
 var RoomNode = require('./RoomNode');
+
 var RoomActions = require('../actions/RoomActions');
 var RoomStore = require('../stores/RoomStore');
-var MessageStore = require('../stores/MessageStore');
+var UserStore = require('../stores/UserStore');
 
 var RoomBox = React.createClass({
     getInitialState : function() {
         return {
             rooms : RoomStore.getRooms(),
-            currentRoom : MessageStore.getCurrentRoom()
+            currentRoom : UserStore.getCurrentRoom()
         }
     },
     
     componentDidMount : function(){
-        RoomStore.addChangeListener(this._onChange);
-        MessageStore.addChangeListener(this._onChange);
+        UserStore.addChangeListener(this._onUserChange);
+        RoomStore.addChangeListener(this._onRoomChange);
     },
     
     componentWillUnmount : function(){
-        RoomStore.removeChangeListener(this._onChange);
-        MessageStore.removeChangeListener(this._onChange);
+        UserStore.removeChangeListener(this._onUserChange);
+        RoomStore.removeChangeListener(this._onRoomChange);
     },
     
-    _onChange : function() {
+    _onUserChange : function() {
+        this.setState({
+            currentRoom : UserStore.getCurrentRoom()
+        })
+    },
+    
+    _onRoomChange : function() {
         this.setState({
             rooms : RoomStore.getRooms(),
-            currentRoom : MessageStore.getCurrentRoom()
         })
     },
     

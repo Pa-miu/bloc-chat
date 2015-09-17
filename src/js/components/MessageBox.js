@@ -5,38 +5,45 @@ var MessageList = require('./MessageList');
 var MessageInstance = require('./MessageInstance');
 var DateDivider = require('./DateDivider');
 var MessageForm = require('./MessageForm');
-var MessageStore = require('../stores/MessageStore');
-var MessageActions = require('../actions/MessageActions');
-var RoomActions = require('../actions/RoomActions');
 
-var defaultRoom = 'dummy';
+var MessageActions = require('../actions/MessageActions');
+var MessageStore = require('../stores/MessageStore');
+var UserStore = require('../stores/UserStore');
 
 var MessageBox = React.createClass({
     getInitialState : function() {
         return {
-            currentRoom : MessageStore.getCurrentRoom(),
+            username : UserStore.getUsername(),
+            currentRoom : UserStore.getCurrentRoom(),
             messages : MessageStore.getMessages()
         }
     },
     
     componentDidMount : function(){
-        MessageStore.addChangeListener(this._onChange);
-        RoomActions.changeRoom(defaultRoom);
+        UserStore.addChangeListener(this._onUserChange);
+        MessageStore.addChangeListener(this._onMessageChange);
     },
     
     componentWillUnmount : function(){
-        MessageStore.removeChangeListener(this._onChange);
+        UserStore.removeChangeListener(this._onUserChange);
+        MessageStore.removeChangeListener(this._onMessageChange);
     },
     
-    _onChange : function() {
+    _onUserChange : function() {
         this.setState({
-            currentRoom : MessageStore.getCurrentRoom(),
+            username : UserStore.getUsername(),
+            currentRoom : UserStore.getCurrentRoom()
+        });
+    },
+    
+    _onMessageChange : function() {
+        this.setState({
             messages : MessageStore.getMessages()
         });
     },
     
     handleSubmitMessage : function(messageText) {
-        var username = 'dummySender';
+        var username = this.state.username;
         var userIcon = '';
         var messageTime = new Date().toUTCString(); 
         var messageObject = {
@@ -47,7 +54,7 @@ var MessageBox = React.createClass({
         };
         
         var messagePayload = {
-            room : defaultRoom,
+            room : this.state.currentRoom,
             message : messageObject
         };
             
