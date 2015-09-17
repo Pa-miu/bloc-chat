@@ -13,8 +13,8 @@ var RoomNode = React.createClass({
         return (
             <div className="room-node room-hover" onClick={this.handleChangeRoom}>
                 <div className="room-node-label">{this.props.name}</div>
-                <div className="room-button-wrapper delete-room-position">
-                    <div className="ion-close delete-room-button room-hover" onClick={this.handleDeleteRoom}></div>
+                <div className="room-button-wrapper delete-room-position red-hover">
+                    <div className="ion-close delete-room-button" onClick={this.handleDeleteRoom}></div>
                 </div>
             </div>
         );
