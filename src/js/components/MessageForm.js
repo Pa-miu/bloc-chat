@@ -10,12 +10,13 @@ var MessageForm = React.createClass({
     },
     
     handleKeyDown : function(event) {
-        console.log("test");
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             this.handleSubmit(); 
         }
-        React.findDOMNode(this.refs.messageInput).focus();
+        if (this.props.activemodal()){
+            React.findDOMNode(this.refs.messageInput).focus();
+        }
     },
     
     handleSubmit : function() {

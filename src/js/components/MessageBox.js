@@ -80,9 +80,9 @@ var MessageBox = React.createClass({
     render : function () {
         return (
             <div className="message-box message-sidebar-offset">
-                <MessageHeader roomname={this.state.currentRoom}/>
+                <MessageHeader roomname={this.state.currentRoom} username={this.state.username} toggle={this.props.toggle}/>
                 <MessageList messages={this.state.messages.map(this.objectToMessage)}/>
-                <MessageForm submit={this.handleSubmitMessage}/>
+                <MessageForm submit={this.handleSubmitMessage} activemodal={this.props.activemodal}/>
             </div>
         );
     }
