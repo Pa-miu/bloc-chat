@@ -12,7 +12,6 @@
             - [ ] Remember active room
     2. Room
         a. List
-            - [ ] Splash page to introduce interface on new session
             - [x] Join any room by clicking on it
         b. Create
             - [x] Create a new room on the server with a modal form
@@ -25,7 +24,6 @@
             - [x] Every message is associated with a name and timestamp
             - [x] Every message for a room persists on the server
             - [ ] Show joining and leaving of users
-            - [ ] Every user has a default "guest" icon next to their name
         b. Send
             - [ ] Send new message to the room associated with current username
             - [ ] Messages support Markdown
