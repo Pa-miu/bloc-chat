@@ -3,16 +3,16 @@ var AppConstants = require('../constants/AppConstants');
 var ChatAPI = require('../api/ChatAPI');
 
 var RoomActions = {
-    createRoom : function(newRoom) {
-        ChatAPI.createRoom(newRoom);
+    createRoom : function(newRoom, currentRoom, username) {
+        ChatAPI.createRoom(newRoom,  currentRoom, username);
     },
     
-    deleteRoom : function(roomName, fallback) {
-        ChatAPI.deleteRoom(roomName, fallback);
+    deleteRoom : function(roomName, fallbackRoom, username) {
+        ChatAPI.deleteRoom(roomName, fallbackRoom, username);
     },
     
-    changeRoom : function(roomName, lastRoom) {
-        ChatAPI.getMessages(roomName, lastRoom);
+    changeRoom : function(roomName, lastRoom, username) {
+        ChatAPI.getMessages(roomName, lastRoom, username);
     } 
 };
 

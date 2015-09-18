@@ -2,16 +2,26 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var RoomActions = require('../actions/RoomActions');
+var UserStore = require('../stores/UserStore');
 
 var CreateRoomModal = React.createClass({
     getInitialState : function() {
         return({
-            mounted : false
+            mounted : false,
+            username : UserStore.getUsername(),
+            currentRoom : UserStore.getCurrentRoom()
         });
     },
     
     componentDidMount : function() {
         this.setState({mounted : !this.state.mounted});
+    },
+    
+    _onUserChange : function() {
+        this.setState({
+            username : UserStore.getUsername(),
+            currentRoom : UserStore.getCurrentRoom()
+        })
     },
     
     resetInput : function() {
@@ -44,7 +54,7 @@ var CreateRoomModal = React.createClass({
             var newRoom = {
                 name : value
             };
-            RoomActions.createRoom(newRoom);
+            RoomActions.createRoom(newRoom, this.state.currentRoom, this.state.username);
         }
         this.handleToggle();
     },

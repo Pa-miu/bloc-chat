@@ -8,7 +8,8 @@ var UserModal = React.createClass({
     getInitialState : function() {
         return{
             mounted : false,
-            username : UserStore.getUsername()
+            username : UserStore.getUsername(),
+            currentRoom : UserStore.getCurrentRoom()
         };
     },
     
@@ -38,7 +39,7 @@ var UserModal = React.createClass({
             var newUser = {
                 username : value
             };
-            UserActions.changeUser(newUser);
+            UserActions.changeUser(newUser, this.state.username, this.state.currentRoom);
         }
         this.handleToggle();
     },

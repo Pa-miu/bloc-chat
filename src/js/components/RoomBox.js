@@ -11,6 +11,7 @@ var RoomBox = React.createClass({
     getInitialState : function() {
         return {
             rooms : RoomStore.getRooms(),
+            username : UserStore.getUsername(),
             currentRoom : UserStore.getCurrentRoom()
         }
     },
@@ -27,6 +28,7 @@ var RoomBox = React.createClass({
     
     _onUserChange : function() {
         this.setState({
+            username : UserStore.getUsername(),
             currentRoom : UserStore.getCurrentRoom()
         })
     },
@@ -39,7 +41,7 @@ var RoomBox = React.createClass({
     
     handleChangeRoom : function(roomName) {
         if (roomName != this.state.currentRoom) {
-            RoomActions.changeRoom(roomName, this.state.currentRoom);
+            RoomActions.changeRoom(roomName, this.state.currentRoom, this.state.username);
         }
     },
     
@@ -57,7 +59,7 @@ var RoomBox = React.createClass({
         else if (index + 1 < this.state.rooms.length) {
             fallback = this.state.rooms[index + 1].name;
         }
-        RoomActions.deleteRoom(roomName, fallback);
+        RoomActions.deleteRoom(roomName, fallback, this.state.username);
     },
     
     objectToRoom : function(object) {
