@@ -28,7 +28,7 @@ var messagesTemplate = function (name){
 };
 
 // Extracted to reuse in createMessage, deleteMessage and getMessages
-var handleGetMessages = function(roomName, lastRoom, username) {
+var handleChangeRoom = function(roomName, lastRoom, username) {
     firebaseRef.child(paths.messages + roomName).on('child_added', 
         function(data) {
             lStorage.set('currentRoom', roomName);
@@ -52,7 +52,7 @@ var handleGetMessages = function(roomName, lastRoom, username) {
     if (lastRoom) {
         firebaseRef.child(paths.messages + lastRoom).off();
         firebaseRef.child(paths.members + lastRoom + '/' + username).set(null);
-        firebaseRef.child(paths.members + lastRoom + '/' + username).onDisconnect.cancel();
+        firebaseRef.child(paths.members + lastRoom + '/' + username).onDisconnect().cancel();
     }
     firebaseRef.child(paths.members + roomName + '/' + username).set(true);
     firebaseRef.child(paths.members + roomName + '/' + username).onDisconnect().remove();
@@ -101,7 +101,7 @@ var ChatAPI = {
                 if (!data.exists()){ 
                     firebaseRef.child(paths.rooms + name).set(newRoom);
                     firebaseRef.child(paths.messages + name).set(messagesTemplate());
-                    handleGetMessages(newRoom.name, currentRoom, username);
+                    handleChangeRoom(newRoom.name, currentRoom, username);
                 }
             },
             function(error) {
@@ -117,7 +117,7 @@ var ChatAPI = {
                     firebaseRef.child(paths.rooms + roomName).set(null); 
                     firebaseRef.child(paths.messages + roomName).set(null);
                     firebaseRef.child(paths.members + roomName).set(null);
-                    handleGetMessages(fallbackRoom, null, username);
+                    handleChangeRoom(fallbackRoom, null, username);
                 }
             },
             function(error) {
@@ -127,8 +127,8 @@ var ChatAPI = {
         firebaseRef.child(paths.rooms + roomName).off();
     },
     
-    getMessages : function(roomName, lastRoom, username){
-        handleGetMessages(roomName, lastRoom, username);
+    changeRoom : function(roomName, lastRoom, username){
+        handleChangeRoom(roomName, lastRoom, username);
     },
     
     sendMessage : function(messagePayload) {

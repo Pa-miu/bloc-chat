@@ -12,7 +12,7 @@ var RoomActions = {
     },
     
     changeRoom : function(roomName, lastRoom, username) {
-        ChatAPI.getMessages(roomName, lastRoom, username);
+        ChatAPI.changeRoom(roomName, lastRoom, username);
     } 
 };
 
