@@ -23,11 +23,11 @@ var RoomStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
         this.on(CHANGE_EVENT, callback);
     },
-    
+
     removeChangeListener : function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
-    
+
     getRooms : function() {
         return _rooms;
     }
@@ -39,6 +39,7 @@ AppDispatcher.register(function(action) {
         case AppConstants.ROOM_LIST_FETCHED:
             setRooms(action.data);
             RoomStore.emit(CHANGE_EVENT);
+            action.dfd && action.dfd.resolve(CHANGE_EVENT);
             break;
         default:
             return true;

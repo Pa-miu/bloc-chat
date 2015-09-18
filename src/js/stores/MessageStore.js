@@ -8,7 +8,7 @@ var AppConstants = require('../constants/AppConstants');
 var CHANGE_EVENT = 'change';
 
 /* Data */
-var _currentRoom = '';
+var _currentRoom = null;
 var _messages = [];
 
 /* Mutators */

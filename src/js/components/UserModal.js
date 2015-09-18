@@ -1,27 +1,20 @@
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-var RoomActions = require('../actions/RoomActions');
+var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
-
-var CreateRoomModal = React.createClass({
+                        
+var UserModal = React.createClass({
     getInitialState : function() {
-        return({
+        return{
             mounted : false,
             username : UserStore.getUsername(),
             currentRoom : UserStore.getCurrentRoom()
-        });
+        };
     },
     
     componentDidMount : function() {
         this.setState({mounted : !this.state.mounted});
-    },
-    
-    _onUserChange : function() {
-        this.setState({
-            username : UserStore.getUsername(),
-            currentRoom : UserStore.getCurrentRoom()
-        })
     },
     
     resetInput : function() {
@@ -31,14 +24,6 @@ var CreateRoomModal = React.createClass({
     handleToggle : function() {
         this.resetInput();
         this.props.toggle();
-        /*  
-            This will "play" the form's reverse animation.
-            But if the parent is removed from the DOM before
-            the form has had a chance to complete its lifecycle,
-            it will throw an error.
-            
-        this.setState({mounted : !this.state.mounted}); 
-        */
     },
     
     handleKeyDown : function(event) {
@@ -51,25 +36,25 @@ var CreateRoomModal = React.createClass({
     handleSubmit : function() {
         var value = React.findDOMNode(this.refs.roomNameInput).value;
         if (value.length > 0) {
-            var newRoom = {
-                name : value
+            var newUser = {
+                username : value
             };
-            RoomActions.createRoom(newRoom, this.state.currentRoom, this.state.username);
+            UserActions.changeUser(newUser, this.state.username, this.state.currentRoom);
         }
         this.handleToggle();
     },
     
-    generateRoomCreateForm : function() {
+    generateUserForm : function() {
         return (
             <form className="modal-form">
                 <div className="modal-header no-select">
-                    Create a New Room
+                    User Options
                 </div>
                 <div className="modal-body">
-                    <p>Create a public room on the server every user can see and join.</p>
+                    <p>Change your display name, @{this.state.username}.</p>
                     <div className="modal-entry-group">
-                        <label className="modal-label no-select">Name</label>
-                        <input className="modal-input" ref="roomNameInput" maxLength="20" autoFocus/>
+                        <label className="modal-label no-select">New Name</label>
+                        <input className="modal-input" ref="roomNameInput" maxLength="16" autoFocus/>
                     </div>
                 </div>
                 <div className="modal-footer">
@@ -85,11 +70,11 @@ var CreateRoomModal = React.createClass({
             <div className="modal-dialog" onKeyDown={this.handleKeyDown}>
                 <div onClick={this.handleToggle} className="modal-dim"></div>
                 <ReactCSSTransitionGroup transitionName="animate">
-                    {this.state.mounted ? this.generateRoomCreateForm() : null}
+                    {this.state.mounted ? this.generateUserForm() : null}
                 </ReactCSSTransitionGroup>
             </div>
         )
     }
 });
 
-module.exports = CreateRoomModal;
+module.exports = UserModal;
