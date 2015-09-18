@@ -11,8 +11,11 @@ var firebaseRef = new Firebase('https://kusera-bloc-chat.firebaseio.com');
 var paths = {
     rooms : '/rooms/',
     messages : '/messages/',
-    members : '/members/'
+    members : '/members/',
+    online : '/online/'
 };
+var DEFAULT_NAME = 'guest';
+var DEFAULT_ROOM = 'landing';
 
 var messagesTemplate = function (name){
     return {
@@ -27,22 +30,38 @@ var messagesTemplate = function (name){
 
 var ChatAPI = {
     startSession : function() {
+        var user = {
+            username : lStorage.get('username'),
+            currentRoom : lStorage.get('currentRoom')
+        }
+        
+        if (!user.username){
+            var guestNum = '000' + Math.floor(Math.random() * 10000);
+            guestNum = guestNum.substr(guestNum.length - 4);
+            user.username = DEFAULT_NAME + guestNum;
+            user.currentRoom = DEFAULT_ROOM;
+            lStorage.set('username', user.username);
+            lStorage.set('currentRoom', user.currentRoom);
+        }
+        
+        return user;
     },
     
     setUser : function(newUser) {
+        lStorage.set('username', newUser.username);
         ServerActions.userFetched(newUser);
     },
     
     getUser : function() {
     },
     
-    getActiveUsers : function() {
-        firebaseRef.child(paths.members).on('value',
+    getOnlineUsers : function() {
+        firebaseRef.child(paths.online).once('value',
             function(data){
-                 
+                
             },
             function(error){
-                console.log('ChatAPI.getActiveUsers() encountered an error: ' + error.getCode());
+                console.log('ChatAPI.OnlineUsers() encountered an error: ' + error.getCode());
             }
         );
     },
@@ -92,6 +111,7 @@ var ChatAPI = {
         firebaseRef.child(paths.messages + roomName).on('child_added', 
             function(data) {
                 var payload = {room : roomName, id : data.key(), message : data.val()};
+                lStorage.set('currentRoom', roomName);
                 ServerActions.messageFetched(payload);
             },
             function(error) {
