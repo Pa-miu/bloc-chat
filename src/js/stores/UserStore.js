@@ -19,13 +19,6 @@ var setUsername = function(newName){
     }
 };
 
-var setActiveUsers = function(userList){
-    _activeUsers.splice(0, _activeUsers.length);
-    for (var key in userlist) {
-        _activeUsers.push(userlist[key]);
-    }
-};
-
 var setCurrentRoom = function(roomJoined){
     if (roomJoined){
         _currentRoom = roomJoined;
@@ -46,10 +39,6 @@ var UserStore = assign({}, EventEmitter.prototype, {
         return _username;
     },
     
-    getActiveUsers : function() {
-        return _activeUsers;
-    },
-    
     getCurrentRoom : function() {
         return _currentRoom;
     }
@@ -61,10 +50,6 @@ AppDispatcher.register(function(action) {
         case AppConstants.USER_FETCHED:
             setUsername(action.data.username);
             setCurrentRoom(action.data.currentRoom);
-            UserStore.emit(CHANGE_EVENT);
-            break;
-        case AppConstants.ACTIVE_USERS_FETCHED:
-            setCurrentRoom(action.data);
             UserStore.emit(CHANGE_EVENT);
             break;
         case AppConstants.MESSAGE_FETCHED:

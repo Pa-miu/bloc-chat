@@ -9,13 +9,6 @@ var ServerActions = {
         });
     },
     
-    activeUsersFetched : function(json) {
-        AppDispatcher.handleAction({
-            type : AppConstants.ACTIVE_USERS_FETCHED,
-            data : json
-        });
-    },
-    
     roomListFetched : function(json) { 
         AppDispatcher.handleAction({
             type : AppConstants.ROOM_LIST_FETCHED,
