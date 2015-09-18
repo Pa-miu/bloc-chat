@@ -7,8 +7,8 @@ var RoomActions = {
         ChatAPI.createRoom(newRoom);
     },
     
-    deleteRoom : function(roomName) {
-        ChatAPI.deleteRoom(roomName);
+    deleteRoom : function(roomName, fallback) {
+        ChatAPI.deleteRoom(roomName, fallback);
     },
     
     changeRoom : function(roomName, lastRoom) {

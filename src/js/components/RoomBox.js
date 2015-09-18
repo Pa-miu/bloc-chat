@@ -44,12 +44,25 @@ var RoomBox = React.createClass({
     },
     
     handleDeleteRoom : function(roomName) {
-        RoomActions.deleteRoom(roomName);
+        for (var i = 0; i < this.state.rooms.length; ++i) {
+            if (this.state.rooms[i].name === roomName) {
+                index = i;
+                break;
+            }
+        }
+        var fallback = null;
+        if (index - 1 >= 0) {
+            fallback = this.state.rooms[index - 1].name;
+        }
+        else if (index + 1 < this.state.rooms.length) {
+            fallback = this.state.rooms[index + 1].name;
+        }
+        RoomActions.deleteRoom(roomName, fallback);
     },
     
     objectToRoom : function(object) {
         return <RoomNode 
-                    key={object.name} 
+                    key={object.name + Date.now()} 
                     name={object.name} 
                     changeRoom={this.handleChangeRoom} 
                     deleteRoom={this.handleDeleteRoom}

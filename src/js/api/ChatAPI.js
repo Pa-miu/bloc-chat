@@ -4,7 +4,6 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
 var ServerActions = require('../actions/ServerActions');
-var UserActions = require('../actions/ServerActions');
 
 var lStorage = require('./store.min.js');
 var firebaseRef = new Firebase('https://kusera-bloc-chat.firebaseio.com');
@@ -26,7 +25,34 @@ var messagesTemplate = function (name){
             "content" : "This is your room!"
         }
     }
-}
+};
+
+// Extracted to reuse in createMessage, deleteMessage and getMessages
+var handleGetMessages = function(roomName, lastRoom) {
+    firebaseRef.child(paths.messages + roomName).on('child_added', 
+        function(data) {
+            lStorage.set('currentRoom', roomName);
+            var payload = {room : roomName, id : data.key(), message : data.val()};
+            ServerActions.messageFetched(payload);
+        },
+        function(error) {
+            console.log('ChatAPI.getMessages() encountered an error during fetch: ' + error.getCode());
+        }
+    );
+
+    firebaseRef.child(paths.messages + roomName).on('child_removed', 
+        function(data) {
+            ServerActions.messageRemoved(data.key());
+        },
+        function(error) {
+            console.log('ChatAPI.getMessages() encountered an error during removal: ' + error.getCode());
+        }
+    );
+
+    if (lastRoom) {
+        firebaseRef.child(paths.messages + lastRoom).off();
+    }
+};
 
 var ChatAPI = {
     startSession : function() {
@@ -52,9 +78,6 @@ var ChatAPI = {
         ServerActions.userFetched(newUser);
     },
     
-    getUser : function() {
-    },
-    
     getOnlineUsers : function() {
         firebaseRef.child(paths.online).once('value',
             function(data){
@@ -64,36 +87,6 @@ var ChatAPI = {
                 console.log('ChatAPI.OnlineUsers() encountered an error: ' + error.getCode());
             }
         );
-    },
-    
-    createRoom : function(newRoom){
-        var name = newRoom.name;
-        firebaseRef.child(paths.rooms + name).once('value', 
-            function(data) {
-                if (!data.exists()){ 
-                    firebaseRef.child(paths.rooms + name).set(newRoom);
-                    firebaseRef.child(paths.messages + name).set(messagesTemplate());
-                }
-            },
-            function(error) {
-                console.log('ChatAPI.createRoom() encountered an error: ' + error.getCode());
-            }
-        );
-    },
-    
-    deleteRoom : function(roomName){
-        firebaseRef.child(paths.rooms + roomName).once('value',
-            function(data) {
-                if (data.exists()){ 
-                    firebaseRef.child(paths.rooms + roomName).set(null); 
-                    firebaseRef.child(paths.messages + roomName).set(null);
-                }
-            },
-            function(error) {
-                console.log('ChatAPI.deleteRoom() encountered an error: ' + error.getCode());
-            }
-        );
-        firebaseRef.child(paths.rooms + roomName).off();
     },
     
     getRoomList : function(){
@@ -107,28 +100,40 @@ var ChatAPI = {
         );
     },
     
+    createRoom : function(newRoom){
+        var name = newRoom.name;
+        firebaseRef.child(paths.rooms + name).once('value', 
+            function(data) {
+                if (!data.exists()){ 
+                    firebaseRef.child(paths.rooms + name).set(newRoom);
+                    firebaseRef.child(paths.messages + name).set(messagesTemplate());
+                    handleGetMessages(newRoom.name, null);
+                }
+            },
+            function(error) {
+                console.log('ChatAPI.createRoom() encountered an error: ' + error.getCode());
+            }
+        );
+    },
+    
+    deleteRoom : function(roomName, fallback){
+        firebaseRef.child(paths.rooms + roomName).once('value',
+            function(data) {
+                if (data.exists()){ 
+                    firebaseRef.child(paths.rooms + roomName).set(null); 
+                    firebaseRef.child(paths.messages + roomName).set(null);
+                    handleGetMessages(fallback, null);
+                }
+            },
+            function(error) {
+                console.log('ChatAPI.deleteRoom() encountered an error: ' + error.getCode());
+            }
+        );
+        firebaseRef.child(paths.rooms + roomName).off();
+    },
+    
     getMessages : function(roomName, lastRoom){
-        firebaseRef.child(paths.messages + roomName).on('child_added', 
-            function(data) {
-                var payload = {room : roomName, id : data.key(), message : data.val()};
-                lStorage.set('currentRoom', roomName);
-                ServerActions.messageFetched(payload);
-            },
-            function(error) {
-                console.log('ChatAPI.getMessages() encountered an error during fetch: ' + error.getCode());
-            }
-        );
-        
-        firebaseRef.child(paths.messages + roomName).on('child_removed', 
-            function(data) {
-                ServerActions.messageRemoved(data.key());
-            },
-            function(error) {
-                console.log('ChatAPI.getMessages() encountered an error during removal: ' + error.getCode());
-            }
-        );
-        
-        firebaseRef.child(paths.messages + lastRoom).off();
+        handleGetMessages(roomName, lastRoom);
     },
     
     sendMessage : function(messagePayload) {
