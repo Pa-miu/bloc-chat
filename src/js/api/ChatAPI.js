@@ -1,4 +1,5 @@
 var Firebase = require('firebase');
+var Q = require('q');
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
@@ -29,7 +30,7 @@ var messagesTemplate = function (name){
 
 // Extracted to reuse in createMessage, deleteMessage and getMessages
 var handleChangeRoom = function(roomName, lastRoom, username) {
-    firebaseRef.child(paths.messages + roomName).on('child_added', 
+    firebaseRef.child(paths.messages + roomName).on('child_added',
         function(data) {
             lStorage.set('currentRoom', roomName);
             var payload = {room : roomName, id : data.key(), message : data.val()};
@@ -40,7 +41,7 @@ var handleChangeRoom = function(roomName, lastRoom, username) {
         }
     );
 
-    firebaseRef.child(paths.messages + roomName).on('child_removed', 
+    firebaseRef.child(paths.messages + roomName).on('child_removed',
         function(data) {
             ServerActions.messageRemoved(data.key());
         },
@@ -48,7 +49,7 @@ var handleChangeRoom = function(roomName, lastRoom, username) {
             console.log('ChatAPI.getMessages() encountered an error during removal: ' + error.getCode());
         }
     );
-    
+
     if (lastRoom) {
         firebaseRef.child(paths.messages + lastRoom).off();
         firebaseRef.child(paths.members + lastRoom + '/' + username).set(null);
@@ -64,7 +65,7 @@ var ChatAPI = {
             username : lStorage.get('username'),
             currentRoom : lStorage.get('currentRoom')
         }
-        
+
         if (!user.username){
             var guestNum = '000' + Math.floor(Math.random() * 10000);
             guestNum = guestNum.substr(guestNum.length - 4);
@@ -73,32 +74,35 @@ var ChatAPI = {
             lStorage.set('username', user.username);
             lStorage.set('currentRoom', user.currentRoom);
         }
-        
+
         return user;
     },
-    
+
     changeUser : function(newUser, lastUser, currentRoom) {
         lStorage.set('username', newUser.username);
         ServerActions.userFetched(newUser);
         firebaseRef.child(paths.rooms + currentRoom)
     },
-    
+
     getRoomList : function(){
-        firebaseRef.child(paths.rooms).on('value', 
+        var dfd = Q.defer();
+        firebaseRef.child(paths.rooms).on('value',
             function(data) {
-                ServerActions.roomListFetched(data.val());
+                ServerActions.roomListFetched(data.val(), dfd);
             },
             function(error) {
                 console.log('ChatAPI.getRoom() encountered an error: ' + error.getCode());
+                dfd.reject(new Error(error));
             }
         );
+        return dfd.promise;
     },
-    
+
     createRoom : function(newRoom, currentRoom, username){
         var name = newRoom.name;
-        firebaseRef.child(paths.rooms + name).once('value', 
+        firebaseRef.child(paths.rooms + name).once('value',
             function(data) {
-                if (!data.exists()){ 
+                if (!data.exists()){
                     firebaseRef.child(paths.rooms + name).set(newRoom);
                     firebaseRef.child(paths.messages + name).set(messagesTemplate());
                     handleChangeRoom(newRoom.name, currentRoom, username);
@@ -109,12 +113,12 @@ var ChatAPI = {
             }
         );
     },
-    
+
     deleteRoom : function(roomName, fallbackRoom, username){
         firebaseRef.child(paths.rooms + roomName).once('value',
             function(data) {
-                if (data.exists()){ 
-                    firebaseRef.child(paths.rooms + roomName).set(null); 
+                if (data.exists()){
+                    firebaseRef.child(paths.rooms + roomName).set(null);
                     firebaseRef.child(paths.messages + roomName).set(null);
                     firebaseRef.child(paths.members + roomName).set(null);
                     handleChangeRoom(fallbackRoom, null, username);
@@ -126,13 +130,13 @@ var ChatAPI = {
         );
         firebaseRef.child(paths.rooms + roomName).off();
     },
-    
+
     changeRoom : function(roomName, lastRoom, username){
         handleChangeRoom(roomName, lastRoom, username);
     },
-    
+
     sendMessage : function(messagePayload) {
-        firebaseRef.child(paths.messages + messagePayload.room).once('value', 
+        firebaseRef.child(paths.messages + messagePayload.room).once('value',
             function(data) {
                 firebaseRef.child(paths.messages + messagePayload.room).push(messagePayload.message);
             },
