@@ -11,8 +11,8 @@ var RoomActions = {
         ChatAPI.deleteRoom(roomName);
     },
     
-    changeRoom : function(roomName) {
-        ChatAPI.getMessages(roomName);
+    changeRoom : function(roomName, lastRoom) {
+        ChatAPI.getMessages(roomName, lastRoom);
     } 
 };
 

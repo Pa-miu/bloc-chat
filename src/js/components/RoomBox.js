@@ -39,7 +39,7 @@ var RoomBox = React.createClass({
     
     handleChangeRoom : function(roomName) {
         if (roomName != this.state.currentRoom) {
-            RoomActions.changeRoom(roomName);
+            RoomActions.changeRoom(roomName, this.state.currentRoom);
         }
     },
     

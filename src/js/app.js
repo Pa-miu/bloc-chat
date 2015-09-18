@@ -9,6 +9,8 @@ var defaultUser = {
     currentRoom : 'dummy'
 };
 
+//ChatAPI.startSession();
+
 ChatAPI.setUser(defaultUser);
 ChatAPI.getRoomList();
 ChatAPI.getMessages(defaultUser.currentRoom);

@@ -5,7 +5,8 @@ var AppConstants = require('../constants/AppConstants');
 
 var ServerActions = require('../actions/ServerActions');
 var UserActions = require('../actions/ServerActions');
-    
+
+var lStorage = require('./store.min.js');
 var firebaseRef = new Firebase('https://kusera-bloc-chat.firebaseio.com');
 var paths = {
     rooms : '/rooms/',
@@ -25,6 +26,27 @@ var messagesTemplate = function (name){
 }
 
 var ChatAPI = {
+    startSession : function() {
+    },
+    
+    setUser : function(newUser) {
+        ServerActions.userFetched(newUser);
+    },
+    
+    getUser : function() {
+    },
+    
+    getActiveUsers : function() {
+        firebaseRef.child(paths.members).on('value',
+            function(data){
+                 
+            },
+            function(error){
+                console.log('ChatAPI.getActiveUsers() encountered an error: ' + error.getCode());
+            }
+        );
+    },
+    
     createRoom : function(newRoom){
         var name = newRoom.name;
         firebaseRef.child(paths.rooms + name).once('value', 
@@ -52,13 +74,7 @@ var ChatAPI = {
                 console.log('ChatAPI.deleteRoom() encountered an error: ' + error.getCode());
             }
         );
-    },
-    
-    setUser : function(newUser) {
-        ServerActions.userFetched(newUser);
-    },
-    
-    getUser : function() {
+        firebaseRef.child(paths.rooms + roomName).off();
     },
     
     getRoomList : function(){
@@ -72,18 +88,7 @@ var ChatAPI = {
         );
     },
     
-    sendMessage : function(messagePayload) {
-        firebaseRef.child(paths.messages + messagePayload.room).once('value', 
-            function(data) {
-                firebaseRef.child(paths.messages + messagePayload.room).push(messagePayload.message);
-            },
-            function(error) {
-                console.log('ChatAPI.sentMessage() encountered an error: ' + error.getCode());
-            }
-        );
-    },
-    
-    getMessages : function(roomName){
+    getMessages : function(roomName, lastRoom){
         firebaseRef.child(paths.messages + roomName).on('child_added', 
             function(data) {
                 var payload = {room : roomName, id : data.key(), message : data.val()};
@@ -102,7 +107,20 @@ var ChatAPI = {
                 console.log('ChatAPI.getMessages() encountered an error during removal: ' + error.getCode());
             }
         );
+        
+        firebaseRef.child(paths.messages + lastRoom).off();
     },
+    
+    sendMessage : function(messagePayload) {
+        firebaseRef.child(paths.messages + messagePayload.room).once('value', 
+            function(data) {
+                firebaseRef.child(paths.messages + messagePayload.room).push(messagePayload.message);
+            },
+            function(error) {
+                console.log('ChatAPI.sentMessage() encountered an error: ' + error.getCode());
+            }
+        );
+    }
 };
 
 module.exports = ChatAPI;
