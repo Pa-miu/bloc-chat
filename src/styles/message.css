@@ -59,7 +59,8 @@
     position: absolute;
     top: 4rem;
     bottom: 4rem;
-    min-width: 10rem;
+    left: 0;
+    right: 0;
     padding: 1rem 0;
     overflow-y: auto;
 }
