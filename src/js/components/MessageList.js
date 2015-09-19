@@ -1,4 +1,5 @@
 var React = require('react');
+var MessageForm = require('./MessageForm');
 
 var SCROLL_ZONE = 50;
 
@@ -22,7 +23,7 @@ var MessageList = React.createClass({
                 <div className="message-list" ref="messageList">
                     {this.props.messages}
                 </div>
-                <div className="message-scroll"></div>
+                <MessageForm submit={this.props.submit} activemodal={this.props.activemodal}/>
             </div>
         );
     }

@@ -4,7 +4,6 @@ var MessageHeader = require('./MessageHeader');
 var MessageList = require('./MessageList');
 var MessageInstance = require('./MessageInstance');
 var DateDivider = require('./DateDivider');
-var MessageForm = require('./MessageForm');
 
 var MessageActions = require('../actions/MessageActions');
 var MessageStore = require('../stores/MessageStore');
@@ -81,8 +80,11 @@ var MessageBox = React.createClass({
         return (
             <div className="message-box message-sidebar-offset">
                 <MessageHeader roomname={this.state.currentRoom} username={this.state.username} toggle={this.props.toggle}/>
-                <MessageList messages={this.state.messages.map(this.objectToMessage)}/>
-                <MessageForm submit={this.handleSubmitMessage} activemodal={this.props.activemodal}/>
+                <MessageList 
+                    messages={this.state.messages.map(this.objectToMessage)}
+                    submit={this.handleSubmitMessage} 
+                    activemodal={this.props.activemodal}
+                />
             </div>
         );
     }
