@@ -6,10 +6,10 @@
     1. User
         a. Change Username
             - [ ] Usernames unique across all rooms
-            - [ ] Default username on new session
+            - [x] Default username on new session
         b. Saved Session
-            - [ ] Remember chosen username (if still available)
-            - [ ] Remember active room
+            - [x] Remember chosen username
+            - [x] Remember active room
     2. Room
         a. List
             - [x] Join any room by clicking on it
@@ -25,7 +25,7 @@
             - [x] Every message for a room persists on the server
             - [ ] Show joining and leaving of users
         b. Send
-            - [ ] Send new message to the room associated with current username
+            - [x] Send new message to the room associated with current username
             - [ ] Messages support Markdown
 ###Advanced Features
     1. User
@@ -73,12 +73,13 @@
     
 #####gulp dev
     * Builds `src/js` files into `dev/js` as `bundle.js`.
-    * Copies `index.html` into `dev` and replaces `js` script sources with `build.js`.
-    * Copies `src/styles` into `dev/styles`.
+    * Builds `src/styles` files into `dev/styles` as `style.css`.
     * Copies `src/images` into `dev/images`.
+    * Copies `index.html` into `dev` and injects `build.js` and 'style.css'.
 
 #####gulp production
     * Builds and Uglifies `src/js` files into `prod/js` as `build.min.js`.
-    * Copies `src/styles` into `prod/styles`.
-    * Copies `index.html` into `prod` and replaces `js` script sources with `bundle.min.js`.
+    * Builds `src/styles` files into `prod/styles` as `style.css`.
+    * Copies `src/images` into `prod/images`.
+    * Copies `index.html` into `prod` and injects `bundle.min.js` and 'style.css'.
 
