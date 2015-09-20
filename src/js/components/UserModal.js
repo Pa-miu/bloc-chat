@@ -66,11 +66,12 @@ var UserModal = React.createClass({
     },
     
     render : function(){
+        var userForm = this.state.mounted ? this.generateUserForm() : null;
         return (
             <div className="modal-dialog" onKeyDown={this.handleKeyDown}>
                 <div onClick={this.handleToggle} className="modal-dim"></div>
                 <ReactCSSTransitionGroup transitionName="animate">
-                    {this.state.mounted ? this.generateUserForm() : null}
+                    {userForm}
                 </ReactCSSTransitionGroup>
             </div>
         )

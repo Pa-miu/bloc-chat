@@ -81,11 +81,12 @@ var CreateRoomModal = React.createClass({
     },
     
     render : function(){
+        var roomForm = this.state.mounted ? this.generateRoomCreateForm() : null;
         return (
             <div className="modal-dialog" onKeyDown={this.handleKeyDown}>
                 <div onClick={this.handleToggle} className="modal-dim"></div>
                 <ReactCSSTransitionGroup transitionName="animate">
-                    {this.state.mounted ? this.generateRoomCreateForm() : null}
+                    {roomForm}
                 </ReactCSSTransitionGroup>
             </div>
         )
