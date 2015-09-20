@@ -30,15 +30,22 @@ var CreateRoomModal = React.createClass({
     
     handleToggle : function() {
         this.resetInput();
+        /*
+            The next line is rather fragile. It'll trigger the component
+            removal process (and animation) on the inner form. If the form's animation 
+            lasts as long as its parent's animation, then it will throw an error,
+            because the child is removed from the DOM before React can call its 
+            componentDidUnmount() function, which happens at the end of the 
+            transition event. This will cause React to reference 'undefined', 
+            since ths child no longer exists.
+
+            Therefore, the form's *-leave animation must be shorter than 
+            the modal's *-leave animation. It might sometimes throw
+            and error anyway because the timing is unrelibale. A difference of 0.1s
+            between animations seems to prevent most errors.
+        */  
+        this.setState({mounted : !this.state.mounted});
         this.props.toggle();
-        /*  
-            This will "play" the form's reverse animation.
-            But if the parent is removed from the DOM before
-            the form has had a chance to complete its lifecycle,
-            it will throw an error.
-            
-        this.setState({mounted : !this.state.mounted}); 
-        */
     },
     
     handleKeyDown : function(event) {

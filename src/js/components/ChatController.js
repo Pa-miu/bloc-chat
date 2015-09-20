@@ -28,13 +28,13 @@ var ChatController = React.createClass({
     
     generateRoomCreateModal : function() {
         return (
-            <CreateRoomModal toggle={this.handleRoomCreateToggle}/>
+            <CreateRoomModal key="roomModal" toggle={this.handleRoomCreateToggle}/>
         )
     },
     
     generateUserModal : function() {
         return (
-            <UserModal toggle={this.handleUserToggle}/>
+            <UserModal key="userModal" toggle={this.handleUserToggle}/>
         )
     },
     

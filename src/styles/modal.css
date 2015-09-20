@@ -7,10 +7,12 @@
     color: black;
     z-index: 9999;
     cursor: default;
+    pointer-events: all;
 }
 
 .modal-dialog.animate-enter {
     opacity: 0.01;
+    pointer-events: none;
 }
 
 .modal-dialog.animate-enter.animate-enter-active {
@@ -21,6 +23,7 @@
 
 .modal-dialog.animate-leave {
     opacity: 1;
+    pointer-events: none;
 }
 
 .modal-dialog.animate-leave.animate-leave-active {
@@ -53,7 +56,6 @@
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);
-    transition: all 0.2s ease-in;
 }
 
 .modal-form.animate-enter.animate-enter-active  {
@@ -61,11 +63,12 @@
     -webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	transform: translateY(0);
+    transition: all 0.1s ease-in;
 }
 
 .modal-form.animate-leave {
     opacity: 1;
-    transition: all 0.2s ease-in;
+    pointer-events: none;
 }
 
 .modal-form.animate-leave.animate-leave-active  {
@@ -73,6 +76,8 @@
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);
+    transition: all 0.1s ease-in;
+    pointer-events: none;
 }
 
 .modal-dialog .modal-form .modal-header {
