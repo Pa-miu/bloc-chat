@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var MessageHeader = require('./MessageHeader');
 var MessageList = require('./MessageList');
@@ -8,6 +9,7 @@ var DateDivider = require('./DateDivider');
 var MessageActions = require('../actions/MessageActions');
 var MessageStore = require('../stores/MessageStore');
 var UserStore = require('../stores/UserStore');
+var MemberStore = require('../stores/MemberStore');
 
 var MessageBox = React.createClass({
     getInitialState : function() {

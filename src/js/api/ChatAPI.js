@@ -51,11 +51,21 @@ var handleChangeRoom = function(roomName, lastRoom, username) {
     
     if (lastRoom) {
         firebaseRef.child(paths.messages + lastRoom).off();
+        firebaseRef.child(paths.members + lastRoom).off();
         firebaseRef.child(paths.members + lastRoom + '/' + username).set(null);
         firebaseRef.child(paths.members + lastRoom + '/' + username).onDisconnect().cancel();
     }
     firebaseRef.child(paths.members + roomName + '/' + username).set(true);
     firebaseRef.child(paths.members + roomName + '/' + username).onDisconnect().remove();
+    
+    firebaseRef.child(paths.members + roomName).on('value', 
+        function(data) {
+            ServerActions.membersFetched(data.val());
+        },
+        function(error) {
+            console.log('ChatAPI.handleChangeRoom() encountered an error during removal: ' + error.getCode());
+        }
+    );
 };
 
 var ChatAPI = {

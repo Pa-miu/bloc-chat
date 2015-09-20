@@ -14,7 +14,7 @@ var _messages = [];
 /* Mutators */
 var setCurrentRoom = function(roomName) {
     if (roomName != _currentRoom) {
-        _messages = [];
+        _messages.splice(0, _messages.length);
     }
     _currentRoom = roomName;
 }
@@ -40,10 +40,6 @@ var MessageStore = assign({}, EventEmitter.prototype, {
     
     removeChangeListener : function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
-    },
-    
-    getCurrentRoom : function() {
-        return _currentRoom;
     },
     
     getMessages : function() {

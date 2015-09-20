@@ -29,6 +29,13 @@ var ServerActions = {
             data : json
         });
     },
+    
+    membersFetched : function(json) {
+        AppDispatcher.handleAction({
+            type : AppConstants.MEMBERS_FETCHED,
+            data : json
+        });
+    }
 };
 
 module.exports = ServerActions;
