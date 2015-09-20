@@ -16,7 +16,6 @@ var setMembers = function(memberList) {
     for (var key in memberList) {
         _members.push(key);
     }
-    console.log(_members);
 }
 
 /* Store */
