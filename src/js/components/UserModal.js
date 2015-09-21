@@ -54,7 +54,10 @@ var UserModal = React.createClass({
             var newUser = {
                 username : value
             };
-            UserActions.changeUser(newUser, this.state.username, this.state.currentRoom);
+            var lastUser = {
+                username : this.state.username
+            }
+            UserActions.changeUser(newUser, lastUser, this.state.currentRoom);
         }
         this.handleToggle();
     },

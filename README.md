@@ -18,7 +18,7 @@
             - [ ] Room creator assumes ownership of the room
             - [ ] Ownership passes to other users at the end of a user's session
         d. Members
-            - [ ] Display active users in a room as well as the owner
+            - [x] Display active users in a room as well as the owner
     3. Message 
         a. List
             - [x] Every message is associated with a name and timestamp

@@ -90,7 +90,12 @@ var ChatAPI = {
     changeUser : function(newUser, lastUser, currentRoom) {
         lStorage.set('username', newUser.username);
         ServerActions.userFetched(newUser);
-        firebaseRef.child(paths.rooms + currentRoom)
+        if (lastUser) {
+            firebaseRef.child(paths.members + currentRoom + '/' + lastUser.username).set(null);
+            firebaseRef.child(paths.members + currentRoom + '/' + lastUser.username).onDisconnect().cancel();
+        }
+        firebaseRef.child(paths.members + currentRoom + '/' + newUser.username).set(true);
+        firebaseRef.child(paths.members + currentRoom + '/' + newUser.username).onDisconnect().remove();
     },
     
     getRoomList : function(){
