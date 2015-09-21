@@ -1,46 +1,61 @@
 .message-box {
     position: absolute;
-    top: 0;
-    bottom: 0;
     right: 0;
+    height: 100%;
 }
 
-.message-sidebar-offset
-{
+.message-sidebar-offset{
     left: 15rem;
 }
 
 .message-box .message-box-header {
-    position: absolute;
-    right: 0;
-    left: 0;
+    position: relative;
     height: 4rem;
-    padding: 1rem 2rem;
-    background-color: rgb(29, 31, 39);
+    background-color: rgb(46, 52, 75);
     cursor: default;
     z-index: 2;
 }
 
 .message-box .message-box-header .message-room-name {
+    display: inline-block;
+    position: absolute;
+    left: 2rem;
+    line-height: 4rem;
     font-size: 1.5rem;
     font-weight: 300;
     color: white;
 }
 
+.message-box .message-box-header .message-user {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    height: 4rem;
+    padding: 0 1rem;
+    line-height: 4rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: rgb(46, 52, 75);
+    cursor: pointer;
+    z-index: 3;
+}
+
+.message-box .message-box-header .message-user:hover {
+    background-color: rgb(100, 173, 91);
+}
+
 .message-box .message-list-wrapper{
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
+    top: 4rem;
     left: 0;
+    bottom: 0;
 }
 
 .message-box .message-list-wrapper .message-list{
-    position: absolute;
-    top: 4rem;
-    bottom: 4rem;
-    min-width: 10rem;
-    padding: 1rem 0;
+    height: calc(100% - 4rem);
     overflow-y: auto;
 }
 
+.member-sidebar-offset{
+    right: 10rem;
+}

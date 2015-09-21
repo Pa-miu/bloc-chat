@@ -4,31 +4,53 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var RoomBox = require('./RoomBox');
 var MessageBox = require('./MessageBox');
 var CreateRoomModal = require('./CreateRoomModal');
+var UserModal = require('./UserModal');
 
 var ChatController = React.createClass({
     getInitialState : function() {
         return({
-            roomModal : false
+            roomModal : false,
+            userModal : false
         });
+    },
+    
+    handleGetModalActive : function() {
+        return !this.state.roomModal && !this.state.userModal;
     },
     
     handleRoomCreateToggle : function() {
         this.setState({roomModal : !this.state.roomModal});
     },
     
+    handleUserToggle : function() {
+        this.setState({userModal : !this.state.userModal});
+    },
+    
     generateRoomCreateModal : function() {
         return (
-            <CreateRoomModal toggle={this.handleRoomCreateToggle}/>
+            <CreateRoomModal key="roomModal" toggle={this.handleRoomCreateToggle}/>
+        )
+    },
+    
+    generateUserModal : function() {
+        return (
+            <UserModal key="userModal" toggle={this.handleUserToggle}/>
         )
     },
     
     render : function() {
+        var roomModal = this.state.roomModal ? this.generateRoomCreateModal() : null;
+        var userModal = this.state.userModal ? this.generateUserModal() : null;
         return (
-            <div>   
+            <div className="chat-controller">   
                 <RoomBox toggle={this.handleRoomCreateToggle}/>
-                <MessageBox/>
+                <MessageBox 
+                    toggle={this.handleUserToggle}
+                    activemodal={this.handleGetModalActive}
+                />
                 <ReactCSSTransitionGroup transitionName="animate">
-                    {this.state.roomModal ? this.generateRoomCreateModal() : null}
+                    {roomModal}
+                    {userModal}
                 </ReactCSSTransitionGroup>
             </div>
         );

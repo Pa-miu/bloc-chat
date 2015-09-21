@@ -4,12 +4,11 @@
   box-sizing: border-box;
 }
 
-html {
+html, body, #app, .chat-controller {
     height: 100%;
 }
 
 body {
-    min-height: 100%;
     padding: 0;
     margin: 0;
     font-family: Open Sans;

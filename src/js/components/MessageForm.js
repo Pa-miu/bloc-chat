@@ -10,12 +10,13 @@ var MessageForm = React.createClass({
     },
     
     handleKeyDown : function(event) {
-        console.log("test");
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             this.handleSubmit(); 
         }
-        React.findDOMNode(this.refs.messageInput).focus();
+        if (this.props.activemodal()){
+            React.findDOMNode(this.refs.messageInput).focus();
+        }
     },
     
     handleSubmit : function() {
@@ -33,8 +34,8 @@ var MessageForm = React.createClass({
     
     render : function () {
         return (
-            <form className="message-form message-sidebar-offset">
-                <div className="message-input-wrapper no-select">
+            <form className="message-form no-select">
+                <div className="message-input-wrapper">
                     <textarea type="text" 
                         className="message-input no-select" 
                         ref="messageInput" 

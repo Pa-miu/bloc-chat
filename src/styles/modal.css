@@ -7,10 +7,12 @@
     color: black;
     z-index: 9999;
     cursor: default;
+    pointer-events: all;
 }
 
 .modal-dialog.animate-enter {
     opacity: 0.01;
+    pointer-events: none;
 }
 
 .modal-dialog.animate-enter.animate-enter-active {
@@ -21,6 +23,7 @@
 
 .modal-dialog.animate-leave {
     opacity: 1;
+    pointer-events: none;
 }
 
 .modal-dialog.animate-leave.animate-leave-active {
@@ -43,7 +46,7 @@
     min-height: 10rem;
     width: 30rem;
     margin-left: -15rem;
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
     background-color: rgb(240, 240, 240);
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
 }
@@ -53,7 +56,6 @@
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);
-    transition: all 0.2s ease-in;
 }
 
 .modal-form.animate-enter.animate-enter-active  {
@@ -61,11 +63,12 @@
     -webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	transform: translateY(0);
+    transition: all 0.1s ease-in;
 }
 
 .modal-form.animate-leave {
     opacity: 1;
-    transition: all 0.2s ease-in;
+    pointer-events: none;
 }
 
 .modal-form.animate-leave.animate-leave-active  {
@@ -73,21 +76,26 @@
     -webkit-transform: translateY(3rem);
 	-moz-transform: translateY(3rem);
 	transform: translateY(3rem);
+    transition: all 0.1s ease-in;
+    pointer-events: none;
 }
 
 .modal-dialog .modal-form .modal-header {
-    padding: 1rem 2rem;
+    padding: 0 2rem;
+    height: 4rem;
+    line-height: 4rem;
     font-size: 1.1rem;
     color: white;
     background-color: rgb(69, 143, 163);
 }
 
 .modal-dialog .modal-form .modal-body {
-    padding: 1rem;
+    padding: 0 2rem;
 }
 
 .modal-dialog .modal-form .modal-body p {
-    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 .modal-dialog .modal-form .modal-body .modal-entry-group {
@@ -110,19 +118,21 @@
 }
 
 .modal-dialog .modal-form .modal-footer {
+    display: flex;
+    justify-content: center;
     position: absolute;
     bottom: 0;
-    height: 3rem;
+    height: 4rem;
     width: 100%;
     text-align: center;
 }
 
 .modal-dialog .modal-form .modal-footer .modal-button {
     display: inline-block;
+    align-self: center;
     margin: 0 0.5rem;
     height: 2rem;
     width: 5rem;
-    vertical-align: middle;
     text-align: center;
     line-height: 2rem;
     font-weight: 700;
