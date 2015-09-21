@@ -19,7 +19,7 @@ var setMembers = function(memberList) {
 }
 
 /* Store */
-var MessageStore = assign({}, EventEmitter.prototype, {
+var MemberStore = assign({}, EventEmitter.prototype, {
     addChangeListener : function(callback) {
         this.on(CHANGE_EVENT, callback);
     },
@@ -38,11 +38,11 @@ AppDispatcher.register(function(action) {
     switch(action.type) {
         case AppConstants.MEMBERS_FETCHED:
             setMembers(action.data);
-            MessageStore.emit(CHANGE_EVENT);
+            MemberStore.emit(CHANGE_EVENT);
             break;
         default:
             return true;
     }
 });
 
-module.exports = MessageStore;
+module.exports = MemberStore;

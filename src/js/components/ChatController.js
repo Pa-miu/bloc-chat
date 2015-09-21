@@ -42,7 +42,7 @@ var ChatController = React.createClass({
         var roomModal = this.state.roomModal ? this.generateRoomCreateModal() : null;
         var userModal = this.state.userModal ? this.generateUserModal() : null;
         return (
-            <div>   
+            <div className="chat-controller">   
                 <RoomBox toggle={this.handleRoomCreateToggle}/>
                 <MessageBox 
                     toggle={this.handleUserToggle}

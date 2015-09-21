@@ -34,8 +34,8 @@ var MessageForm = React.createClass({
     
     render : function () {
         return (
-            <form className="message-form">
-                <div className="message-input-wrapper no-select">
+            <form className="message-form no-select">
+                <div className="message-input-wrapper">
                     <textarea type="text" 
                         className="message-input no-select" 
                         ref="messageInput" 

@@ -1,0 +1,43 @@
+.member-list {
+    position: absolute;
+    right: 0;
+    width: 10rem;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgb(29, 31, 39);
+}
+
+.member-list .member-list-header {
+    height: 3rem;
+    text-align: center;
+}
+
+.member-list .member-list-header .member-header-label{
+    display: inline-block;
+    width: 8rem;
+    color: white;
+    line-height: 3rem;
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: default;
+}
+
+.member-list .member-node {
+    position: relative;
+    height: 2rem;
+    text-align: left;
+}
+
+.member-list .member-node .member-node-label{
+    display: inline-block;
+    max-width: 8rem;
+    padding-left: 1rem;
+    line-height: 2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: default;
+}

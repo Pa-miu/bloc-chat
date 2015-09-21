@@ -9,4 +9,4 @@ ChatAPI.changeUser(savedUser);
 ChatAPI.getRoomList();
 ChatAPI.changeRoom(savedUser.currentRoom, null, savedUser.username);
 
-React.render(<ChatController />, document.getElementById('app'));
+React.render(<ChatController/>, document.getElementById('app'));
