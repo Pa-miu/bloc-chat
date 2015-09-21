@@ -3,8 +3,8 @@ var AppConstants = require('../constants/AppConstants');
 var ChatAPI = require('../api/ChatAPI');
 
 var UserActions = {
-    changeUser : function(newUser, currentRoom) {
-        ChatAPI.changeUser(newUser, currentRoom);
+    changeUser : function(newUser, lastUser, currentRoom) {
+        ChatAPI.changeUser(newUser, lastUser, currentRoom);
     }
 };
 

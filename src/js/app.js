@@ -5,7 +5,7 @@ var ChatAPI = require('./api/ChatAPI');
 var ChatController = require('./components/ChatController');
 
 var savedUser = ChatAPI.startSession();
-ChatAPI.changeUser(savedUser);
+ChatAPI.changeUser(savedUser, null, savedUser.currentRoom);
 ChatAPI.getRoomList();
 ChatAPI.changeRoom(savedUser.currentRoom, null, savedUser.username);
 
