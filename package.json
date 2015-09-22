@@ -1,17 +1,13 @@
 {
   "name": "bloc-chat",
   "version": "1.0.0",
-  "description": "",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "A chat app for Bloc made with React/Flux",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kusera/bloc-chat.git"
   },
-  "author": "kusera",
-  "license": "ISC",
+  "author": "Francis Yuan",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kusera/bloc-chat/issues"
   },
