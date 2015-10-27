@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     watchify = require('watchify'),
     reactify = require('reactify'),
     concat = require('gulp-concat'),
-    minifyCSS = require('gulp-minify-css'),
+    cssmin = require('gulp-minify-css'),
     streamify = require('gulp-streamify'),
     livereload = require('gulp-livereload');
 
@@ -16,7 +16,8 @@ var path = {
     IMAGES: 'src/images/**/*.png',
     DEV_OUT: 'build.js',
     DEV_CSS: 'style.css',
-    MINIFIED_OUT: 'build.min.js',
+    MINIFIED_JS: 'build.min.js',
+    MINIFIED_CSS: 'build.min.css',
     APPEND_JS: 'js/',
     APPEND_STYLES: 'styles/',
     APPEND_IMAGES: 'images/',
@@ -25,8 +26,8 @@ var path = {
     ENTRY_POINT: 'src/js/app.js'
 };
 
-/* 
-    Development Tasks 
+/*
+    Development Tasks
  */
 gulp.task('refresh', function() {
     livereload.listen();
@@ -45,7 +46,7 @@ gulp.task('copyHTML', function() {
 gulp.task('copyCSS', function() {
     gulp.src(path.STYLES)
         .pipe(concat(path.DEV_CSS))
-        .pipe(minifyCSS())
+        .pipe(cssmin())
         .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
         .pipe(livereload());
 });
@@ -63,11 +64,11 @@ gulp.task('bundleJS', function() {
         debug: true,
         cache: {}, packageCache: {}, fullpaths: true
     })
-    
+
     browser.bundle()
             .pipe(source(path.DEV_OUT))
             .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS));
-    
+
     console.log('Bundled scripts');
 });
 
@@ -75,14 +76,14 @@ gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copyHTML']);
     gulp.watch(path.STYLES, ['copyCSS']);
     gulp.watch(path.IMAGES, ['copyImage']);
-    
+
     var watcher = watchify(browserify({
         entries: [path.ENTRY_POINT],
         transform: [reactify],
         debug: true,
         cache: {}, packageCache: {}, fullpaths: true
     }));
-    
+
     return watcher.on('update', function() {
         watcher.bundle().on('error', function(err){ console.log(err.message); })
             .pipe(source(path.DEV_OUT))
@@ -95,8 +96,8 @@ gulp.task('watch', function() {
         .pipe(gulp.dest(path.DEST_DEV + path.APPEND_JS));
 });
 
-/* 
-    Production Tasks 
+/*
+    Production Tasks
  */
 gulp.task('build', function() {
     browserify({
@@ -104,24 +105,25 @@ gulp.task('build', function() {
         transform: [reactify]
     })
         .bundle()
-        .pipe(source(path.MINIFIED_OUT))
-        .pipe(streamify(uglify({file:path.MINIFIED_OUT})))
+        .pipe(source(path.MINIFIED_JS))
+        .pipe(streamify(uglify({file:path.MINIFIED_JS})))
         .pipe(gulp.dest(path.DEST_PROD + path.APPEND_JS))
 });
 
 gulp.task('buildHTML', function() {
     gulp.src(path.HTML)
         .pipe(htmlreplace({
-            'js': path.APPEND_JS + path.MINIFIED_OUT
+            js: path.APPEND_JS + path.MINIFIED_JS,
+            css: path.APPEND_STYLES + path.MINIFIED_CSS
         }))
         .pipe(gulp.dest(path.DEST_PROD));
 });
 
 gulp.task('buildCSS', function() {
     gulp.src(path.STYLES)
-        .pipe(concat(path.DEV_CSS))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest(path.DEST_DEV + path.APPEND_STYLES))
+        .pipe(concat(path.MINIFIED_CSS))
+        .pipe(cssmin())
+        .pipe(gulp.dest(path.DEST_PROD + path.APPEND_STYLES));
 });
 
 gulp.task('buildImages', function() {
