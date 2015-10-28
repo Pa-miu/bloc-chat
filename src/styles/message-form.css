@@ -3,7 +3,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    height: 4rem;   /* Add 1rem for every new line during height expansion */
+    height: 6rem;   /* Add 1rem for every new line during height expansion */
     background-color: white;
     z-index: 2;
 }
@@ -13,7 +13,7 @@
     bottom: 1rem;
     left: 1rem;
     right: 4rem;
-    height: 2rem;   /* Add 1rem for every new line during height expansion */
+    height: 4rem;   /* Add 1rem for every new line during height expansion */
 }
 
 .message-form .message-input-wrapper .message-input{
